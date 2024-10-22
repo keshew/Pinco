@@ -7,18 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */; };
+		867D461C2CB3E7650045467B /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867D461B2CB3E7650045467B /* MenuView.swift */; };
 		868F043B2CB1282400B3A759 /* PincoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F043A2CB1282400B3A759 /* PincoApp.swift */; };
 		868F043D2CB1282400B3A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F043C2CB1282400B3A759 /* ContentView.swift */; };
 		868F043F2CB1282500B3A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868F043E2CB1282500B3A759 /* Assets.xcassets */; };
 		868F04422CB1282500B3A759 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868F04412CB1282500B3A759 /* Preview Assets.xcassets */; };
+		868F04492CB130D400B3A759 /* FirstLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F04482CB130D400B3A759 /* FirstLaunchView.swift */; };
+		868F04512CB1387D00B3A759 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 868F044A2CB1387D00B3A759 /* demo.html */; };
+		868F04522CB1387D00B3A759 /* MadimiOne-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 868F044B2CB1387D00B3A759 /* MadimiOne-Regular.eot */; };
+		868F04532CB1387D00B3A759 /* MadimiOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 868F044C2CB1387D00B3A759 /* MadimiOne-Regular.ttf */; };
+		868F04542CB1387D00B3A759 /* MadimiOne-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 868F044D2CB1387D00B3A759 /* MadimiOne-Regular.woff */; };
+		868F04552CB1387D00B3A759 /* MadimiOne-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 868F044E2CB1387D00B3A759 /* MadimiOne-Regular.woff2 */; };
+		868F04562CB1387D00B3A759 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 868F044F2CB1387D00B3A759 /* stylesheet.css */; };
+		86B46FAC2CBABDFB009605DE /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAB2CBABDFB009605DE /* ShopView.swift */; };
+		86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAD2CBABFA7009605DE /* GameView.swift */; };
+		86CA54F32CB7D51500ACAEE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */; };
+		86D622762CB5333C00A149C6 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D622752CB5333C00A149C6 /* StageView.swift */; };
+		86F4FDC52CBFC7A000406592 /* LoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4FDC42CBFC7A000406592 /* LoseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardsView.swift; sourceTree = "<group>"; };
+		867D461B2CB3E7650045467B /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		868F04372CB1282400B3A759 /* Pinco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868F043A2CB1282400B3A759 /* PincoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PincoApp.swift; sourceTree = "<group>"; };
 		868F043C2CB1282400B3A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		868F043E2CB1282500B3A759 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		868F04412CB1282500B3A759 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		868F04482CB130D400B3A759 /* FirstLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchView.swift; sourceTree = "<group>"; };
+		868F044A2CB1387D00B3A759 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
+		868F044B2CB1387D00B3A759 /* MadimiOne-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MadimiOne-Regular.eot"; sourceTree = "<group>"; };
+		868F044C2CB1387D00B3A759 /* MadimiOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MadimiOne-Regular.ttf"; sourceTree = "<group>"; };
+		868F044D2CB1387D00B3A759 /* MadimiOne-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MadimiOne-Regular.woff"; sourceTree = "<group>"; };
+		868F044E2CB1387D00B3A759 /* MadimiOne-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MadimiOne-Regular.woff2"; sourceTree = "<group>"; };
+		868F044F2CB1387D00B3A759 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
+		868F04572CB1396400B3A759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86B46FAB2CBABDFB009605DE /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		86B46FAD2CBABFA7009605DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		86D622752CB5333C00A149C6 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
+		86F4FDC42CBFC7A000406592 /* LoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +61,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		867D461A2CB3E75B0045467B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				868F043C2CB1282400B3A759 /* ContentView.swift */,
+				868F04482CB130D400B3A759 /* FirstLaunchView.swift */,
+				867D461B2CB3E7650045467B /* MenuView.swift */,
+				8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */,
+				86B46FAB2CBABDFB009605DE /* ShopView.swift */,
+				86D622752CB5333C00A149C6 /* StageView.swift */,
+				86B46FAD2CBABFA7009605DE /* GameView.swift */,
+				86F4FDC42CBFC7A000406592 /* LoseView.swift */,
+				86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		868F042E2CB1282400B3A759 = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +96,10 @@
 		868F04392CB1282400B3A759 /* Pinco */ = {
 			isa = PBXGroup;
 			children = (
+				868F04572CB1396400B3A759 /* Info.plist */,
+				868F04502CB1387D00B3A759 /* Font */,
 				868F043A2CB1282400B3A759 /* PincoApp.swift */,
-				868F043C2CB1282400B3A759 /* ContentView.swift */,
+				867D461A2CB3E75B0045467B /* View */,
 				868F043E2CB1282500B3A759 /* Assets.xcassets */,
 				868F04402CB1282500B3A759 /* Preview Content */,
 			);
@@ -65,6 +112,19 @@
 				868F04412CB1282500B3A759 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		868F04502CB1387D00B3A759 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				868F044A2CB1387D00B3A759 /* demo.html */,
+				868F044B2CB1387D00B3A759 /* MadimiOne-Regular.eot */,
+				868F044C2CB1387D00B3A759 /* MadimiOne-Regular.ttf */,
+				868F044D2CB1387D00B3A759 /* MadimiOne-Regular.woff */,
+				868F044E2CB1387D00B3A759 /* MadimiOne-Regular.woff2 */,
+				868F044F2CB1387D00B3A759 /* stylesheet.css */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +185,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868F04552CB1387D00B3A759 /* MadimiOne-Regular.woff2 in Resources */,
+				868F04532CB1387D00B3A759 /* MadimiOne-Regular.ttf in Resources */,
 				868F04422CB1282500B3A759 /* Preview Assets.xcassets in Resources */,
+				868F04542CB1387D00B3A759 /* MadimiOne-Regular.woff in Resources */,
+				868F04522CB1387D00B3A759 /* MadimiOne-Regular.eot in Resources */,
+				868F04512CB1387D00B3A759 /* demo.html in Resources */,
 				868F043F2CB1282500B3A759 /* Assets.xcassets in Resources */,
+				868F04562CB1387D00B3A759 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +203,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D622762CB5333C00A149C6 /* StageView.swift in Sources */,
+				868F04492CB130D400B3A759 /* FirstLaunchView.swift in Sources */,
+				8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */,
+				86F4FDC52CBFC7A000406592 /* LoseView.swift in Sources */,
+				867D461C2CB3E7650045467B /* MenuView.swift in Sources */,
+				86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */,
 				868F043D2CB1282400B3A759 /* ContentView.swift in Sources */,
 				868F043B2CB1282400B3A759 /* PincoApp.swift in Sources */,
+				86B46FAC2CBABDFB009605DE /* ShopView.swift in Sources */,
+				86CA54F32CB7D51500ACAEE3 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,11 +349,14 @@
 				DEVELOPMENT_TEAM = 59WWFG63NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pinco/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,11 +381,14 @@
 				DEVELOPMENT_TEAM = 59WWFG63NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pinco/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

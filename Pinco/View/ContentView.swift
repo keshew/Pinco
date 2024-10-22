@@ -8,9 +8,7 @@ struct ContentView: View {
             if isFirstLaunch {
                 FirstLaunchView()
             } else {
-                Text("С возвращением!")
-                    .font(.largeTitle)
-            }
+                MenuView()            }
         }
         .onAppear(perform: checkFirstLaunch)
     }

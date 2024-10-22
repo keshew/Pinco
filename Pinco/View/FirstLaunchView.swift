@@ -4,7 +4,9 @@ struct FirstLaunchView: View {
     @State private var currentImageIndex = 0
     @State private var currentTextIndex = 0
     @State private var currentTopTextIndex = 0
+    @State private var tapCount = 0
     @State private var isTextVisible = false
+    @State private var isLinkVisible = false
     
     var imageFirstLauchArray = ["firstLaunch",
                                 "firstLaunch2",
@@ -28,79 +30,91 @@ struct FirstLaunchView: View {
                                   "Sure, let's get started already)"]
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            
-            Image(imageFirstLauchArray[currentImageIndex])
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-                .onTapGesture {
-                    withAnimation {
-                        currentImageIndex = (currentImageIndex + 1) % imageFirstLauchArray.count
-                        currentTextIndex = (currentTextIndex + 1) % textFirstLauchArray.count
-                        
-                        if currentTextIndex == 4 {
-                            isTextVisible = true
-                            currentTopTextIndex = 0
-                        } else if  currentTextIndex == 6 {
-                            isTextVisible = true
-                            currentTopTextIndex = 1
-                        } else {
-                            isTextVisible = false
+        NavigationView {
+            ZStack(alignment: .bottom) {
+                Image(imageFirstLauchArray[currentImageIndex])
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            currentImageIndex = (currentImageIndex + 1) % imageFirstLauchArray.count
+                            currentTextIndex = (currentTextIndex + 1) % textFirstLauchArray.count
+                            tapCount = tapCount + 1
+                            
+                            if currentTextIndex == 4 {
+                                isTextVisible = true
+                                currentTopTextIndex = 0
+                            } else if  currentTextIndex == 6 {
+                                isTextVisible = true
+                                currentTopTextIndex = 1
+                            } else if tapCount == 7 {
+                                isLinkVisible = true
+                                isTextVisible = false
+                            } else {
+                                isTextVisible = false
+                            }
                         }
-                        
                     }
+                
+                
+                if isTextVisible {
+                    Text(topTextFirstLauchArray[currentTopTextIndex])
+                        .font(.custom("MadimiOne-Regular", size: 28))
+                        .padding(20)
+                        .background((Color(#colorLiteral(red: 103/255, green: 103/255, blue: 103/255, alpha: 1))))
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.gray, lineWidth: 2)
+                        )
+                        .offset(CGSize(width: 0, height: -UIScreen.main.bounds.height + UIScreen.main.bounds.height / 4))
+                        .multilineTextAlignment(.center)
+                        .frame(width: 316, height: 116, alignment: .center)
+                    
                 }
-            
-      
-            if isTextVisible {
-                Text(topTextFirstLauchArray[currentTopTextIndex])
-                    .font(.custom("MadimiOne-Regular", size: 28))
+                
+                if isLinkVisible {
+                    NavigationLink(destination: MenuView()) {
+                        Text("perehod")
+                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
+                            .foregroundColor(.clear)
+                    }
+                    
+                }
+                
+                Text(textFirstLauchArray[currentTextIndex])
+                    .font(.custom("MadimiOne-Regular", size: 23))
                     .padding(20)
-                    .background((Color(#colorLiteral(red: 103/255, green: 103/255, blue: 103/255, alpha: 1))))
+                    .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
                     .foregroundColor(.white)
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.gray, lineWidth: 2)
                     )
-                    .offset(CGSize(width: 0, height: -UIScreen.main.bounds.height + UIScreen.main.bounds.height / 4))
+                    .offset(CGSize(width: 0, height: -80))
                     .multilineTextAlignment(.center)
                     .frame(width: 316, height: 116, alignment: .center)
+                HStack() {
+                    Text("tap to continue")
+                        .font(.custom("MadimiOne-Regular", size: 24))
+                        .foregroundColor(.white)
                     
-            }
-            
-            Text(textFirstLauchArray[currentTextIndex])
-                .font(.custom("MadimiOne-Regular", size: 23))
-                .padding(20)
-                .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                .foregroundColor(.white)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.gray, lineWidth: 2)
-                )
-                .offset(CGSize(width: 0, height: -80))
-                .multilineTextAlignment(.center)
-                .frame(width: 316, height: 116, alignment: .center)
-            HStack() {
-                Text("tap to continue")
-                    .font(.custom("MadimiOne-Regular", size: 24))
-                    .foregroundColor(.white)
+                    Image(systemName: "forward.fill")
+                        .resizable()
+                        .bold()
+                        .frame(width: 25, height: 15)
+                        .foregroundColor(.white)
+                    
+                }
                 
-                Image(systemName: "forward.fill")
-                    .resizable()
-                    .bold()
-                    .frame(width: 25, height: 15)
-                    .foregroundColor(.white)
-                    
+                .padding(EdgeInsets(top: 0, leading: 150, bottom: 15, trailing: 0))
             }
-            
-            .padding(EdgeInsets(top: 0, leading: 150, bottom: 15, trailing: 0))
         }
     }
 }
-
 #Preview {
     FirstLaunchView()
 }

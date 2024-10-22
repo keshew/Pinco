@@ -1,10 +1,3 @@
-//
-//  ShopView.swift
-//  Pinco
-//
-//  Created by Артём Коротков on 12.10.2024.
-//
-
 import SwiftUI
 
 struct ShopView: View {
