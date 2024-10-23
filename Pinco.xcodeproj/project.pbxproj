@@ -22,6 +22,7 @@
 		868F04562CB1387D00B3A759 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 868F044F2CB1387D00B3A759 /* stylesheet.css */; };
 		86B46FAC2CBABDFB009605DE /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAB2CBABDFB009605DE /* ShopView.swift */; };
 		86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAD2CBABFA7009605DE /* GameView.swift */; };
+		86C0F1A42CC7D039002C9B0F /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0F1A32CC7D039002C9B0F /* PauseView.swift */; };
 		86CA54F32CB7D51500ACAEE3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */; };
 		86D622762CB5333C00A149C6 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D622752CB5333C00A149C6 /* StageView.swift */; };
 		86F4FDC52CBFC7A000406592 /* LoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4FDC42CBFC7A000406592 /* LoseView.swift */; };
@@ -45,6 +46,7 @@
 		868F04572CB1396400B3A759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86B46FAB2CBABDFB009605DE /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		86B46FAD2CBABFA7009605DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		86C0F1A32CC7D039002C9B0F /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		86D622752CB5333C00A149C6 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		86F4FDC42CBFC7A000406592 /* LoseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				86B46FAB2CBABDFB009605DE /* ShopView.swift */,
 				86D622752CB5333C00A149C6 /* StageView.swift */,
 				86B46FAD2CBABFA7009605DE /* GameView.swift */,
+				86C0F1A32CC7D039002C9B0F /* PauseView.swift */,
 				86F4FDC42CBFC7A000406592 /* LoseView.swift */,
 				86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */,
 			);
@@ -212,6 +215,7 @@
 				868F043D2CB1282400B3A759 /* ContentView.swift in Sources */,
 				868F043B2CB1282400B3A759 /* PincoApp.swift in Sources */,
 				86B46FAC2CBABDFB009605DE /* ShopView.swift in Sources */,
+				86C0F1A42CC7D039002C9B0F /* PauseView.swift in Sources */,
 				86CA54F32CB7D51500ACAEE3 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
