@@ -3,24 +3,28 @@ import SwiftUI
 struct DailyRewardsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var currentIndex = 0
-    
+    @State private var isDisableGift = true
+    @State private var currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
+    @State private var currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
     let items = Array(1...7)
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 150))]
-    var isClaimedArray = ["CLAIMED",
-                          "CLAIM",
-                          "EARLY",
-                          "EARLY",
-                          "EARLY",
-                          "EARLY",
-                          "EARLY"]
+//    @State var isClaimedArray = ["EARLY",
+//                          "EARLY",
+//                          "EARLY",
+//                          "EARLY",
+//                          "EARLY",
+//                          "EARLY",
+//                          "EARLY"]
     
-    var dailyCountOfGiftArray = ["+100",
-                                 "+1",
-                                 "+250",
-                                 "+3",
-                                 "+500",
-                                 "+5",
-                                 "1000"]
+    @State var isClaimedArray2 = UserDefaultsManager.defaults.object(forKey: Keys.earlyKey.rawValue) ?? [""]
+    
+    var dailyCountOfGiftArray = [100,
+                                 1,
+                                 250,
+                                 3,
+                                 500,
+                                 5,
+                                 1000]
     
     var giftImageArray = ["moneyCount",
                           "heartImage",
@@ -46,7 +50,42 @@ struct DailyRewardsView: View {
                                      .pink,
                                      .yellow]
     
+    func currentAvailbleGifts() {
+        if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
+            let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
+            print("Количество дней с первого запуска: \(daysPassed)")
+            if daysPassed < 7 {
+                let range = daysPassed...daysPassed
+                var array = returnArray()
+                array[range] = ["CLAIM"]
+                UserDefaultsManager().add(isReadyToGet: array)
+            }
+        }
+    }
     
+    func gotGift() {
+        isDisableGift = false
+        if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
+            let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
+            if daysPassed < 7 {
+                let range = daysPassed...daysPassed
+                var array = returnArray()
+                array[range] = ["CLAIMED"]
+                UserDefaultsManager().add(isReadyToGet: array)
+            }
+        }
+    }
+    
+    func returnArray() -> [String] {
+        var array = [""]
+        if let savedData = UserDefaultsManager.defaults.data(forKey: Keys.earlyKey.rawValue) {
+            let decoder = JSONDecoder()
+            if let loadedArray = try? decoder.decode([String].self, from: savedData) {
+                array =  loadedArray
+            }
+        }
+        return array
+    }
     
     var body: some View {
         ZStack {
@@ -97,7 +136,7 @@ struct DailyRewardsView: View {
                             .cornerRadius(15)
                         
                         
-                        Text("2500")
+                        Text("\(currentMoneyCount)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.yellow)
                             .offset(x: 13)
@@ -116,7 +155,7 @@ struct DailyRewardsView: View {
                             .frame(width: 96, height: 37)
                             .cornerRadius(15)
                         
-                        Text("4")
+                        Text("\(currentLifesCount)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.pink)
                             .offset(x: 14)
@@ -156,10 +195,10 @@ struct DailyRewardsView: View {
                                         .frame(width: 88, height: 33)
                                         .cornerRadius(15)
                                     
-                                    Text(dailyCountOfGiftArray[index])
-                                        .font(.custom("MadimiOne-Regular", size: 18))
+                                    Text("\(dailyCountOfGiftArray[index])")
+                                        .font(.custom("MadimiOne-Regular", size: 16))
                                         .foregroundColor(colorOfTextArray[index])
-                                        .offset(x: 12)
+                                        .offset(x: 13)
                                     
                                     Image(giftImageArray[index])
                                         .resizable()
@@ -169,23 +208,59 @@ struct DailyRewardsView: View {
                                 }
                                 .offset(y: 10)
                                 
-                                Button(action: {
-                                    print("CLAIMED")
-                                }) {
-                                    ZStack {
-                                        Image("lightButton")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 140, height: 90)
-                                            .cornerRadius(15)
-                                        
-                                        Text(isClaimedArray[index])
-                                            .font(.custom("MadimiOne-Regular", size: 20))
-                                            .foregroundColor(.yellow)
+                                if returnArray()[index] == "EARLY", returnArray()[index] == "CLAIMED" {
+                                    Button(action: {
+                                        if dailyCountOfGiftArray[index] % 2 == 0 {
+                                            UserDefaultsManager().add(money: dailyCountOfGiftArray[index])
+                                            currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
+                                            gotGift()
+                                        } else {
+                                            UserDefaultsManager().add(lifes: dailyCountOfGiftArray[index])
+                                            currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
+                                        }
+                                    }) {
+                                        ZStack {
+                                            Image("lightButton")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 140, height: 90)
+                                                .cornerRadius(15)
+                                            
+                                            Text(returnArray()[index])
+                                                .font(.custom("MadimiOne-Regular", size: 20))
+                                                .foregroundColor(.yellow)
+                                        }
                                     }
+                                    .disabled(isDisableGift)
+                                    .frame(width: 110, height: 35)
+                                    .offset(y: 105)
+                                } else {
+                                    Button(action: {
+                                        if dailyCountOfGiftArray[index] % 2 == 0 {
+                                            UserDefaultsManager().add(money: dailyCountOfGiftArray[index])
+                                            currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
+                                            gotGift()
+                                        } else {
+                                            UserDefaultsManager().add(lifes: dailyCountOfGiftArray[index])
+                                            currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
+                                        }
+                                    }) {
+                                        ZStack {
+                                            Image("lightButton")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 140, height: 90)
+                                                .cornerRadius(15)
+                                            
+                                            Text(returnArray()[index])
+                                                .font(.custom("MadimiOne-Regular", size: 20))
+                                                .foregroundColor(.yellow)
+                                        }
+                                    }
+                                    .disabled(!isDisableGift)
+                                    .frame(width: 110, height: 35)
+                                    .offset(y: 105)
                                 }
-                                .frame(width: 110, height: 35)
-                                .offset(y: 105)
                             }
                         }
                     }
@@ -194,6 +269,9 @@ struct DailyRewardsView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 50, leading: 10, bottom: 0, trailing: 0))
+        }
+        .onAppear() {
+            currentAvailbleGifts()
         }
         .navigationBarBackButtonHidden(true)
     }

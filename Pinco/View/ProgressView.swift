@@ -19,7 +19,6 @@ struct ProgressView: View {
                                 "75%",
                                 "90%",
                                 "100%"]
-    
     var levelProgressArray =   ["LEVEL 1",
                                 "LEVEL 2",
                                 "LEVEL 3",
@@ -27,15 +26,13 @@ struct ProgressView: View {
                                 "LEVEL 5",
                                 "LEVEL 6",
                                 "LEVEL 7"]
-    
-    var itemProgressArray =    ["MICROWAVE",
-                                "TOUCHBOX",
-                                "SPIRITUAL",
-                                "SINK",
-                                "CUPBOARD",
-                                "FRIDGE",
-                                "GAS STOVE"]
-    
+    var itemProgressArray =     ["MICROWAVE",
+                                 "TOUCHBOX",
+                                 "SPIRITUAL",
+                                 "SINK",
+                                 "CUPBOARD",
+                                 "FRIDGE",
+                                 "GAS STOVE"]
     var imageProgressArray =    ["microvawe",
                                  "touchbox",
                                  "spiritual",
@@ -43,8 +40,6 @@ struct ProgressView: View {
                                  "cupboard",
                                  "fridge",
                                  "gasStove"]
-    
-    
     func disableButton() {
         if currentIndex == 7 {
             isForwardButtonDisable = true
@@ -60,54 +55,52 @@ struct ProgressView: View {
         }
     }
     
-    
     var body: some View {
-            ZStack {
-                Image("progressViewBackground")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-                
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        ZStack {
-                            Image("backgroundSettingsButton")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 55, height: 55)
-                                .cornerRadius(15)
-                            
-                            Image("backButton")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24.4, height: 24.4)
-                        }
-                        .frame(width: 63, height: 63)
+        ZStack {
+            Image("progressViewBackground")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            
+            HStack(spacing: 240) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    ZStack {
+                        Image("backgroundSettingsButton")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 55, height: 55)
+                            .cornerRadius(15)
+                        
+                        Image("backButton")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24.4, height: 24.4)
                     }
-                    .offset(x: -110, y: -345)
-                    
-                    Button(action: {
-                        print("Кнопка ? нажата")
-                    }) {
-                        ZStack {
-                            Image("backgroundSettingsButton")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 55, height: 55)
-                                .cornerRadius(15)
-                            
-                            Text("?")
-                                .font(.custom("MadimiOne-Regular", size: 34))
-                                .foregroundColor(.black)
-                        }
-                        .frame(width: 63, height: 63)
-                    }
-                    .disabled(true)
-                    .offset(x: 110, y: -345)
                 }
                 
+                Button(action: {
+                    
+                }) {
+                    ZStack {
+                        Image("backgroundSettingsButton")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 55, height: 55)
+                            .cornerRadius(15)
+                        
+                        Text("?")
+                            .font(.custom("MadimiOne-Regular", size: 34))
+                            .foregroundColor(.black)
+                    }
+                }
+                .disabled(true)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
+            
+            VStack {
                 Text("STAGE 1 KITCHEN")
                     .frame(width: 200, height: 108)
                     .font(.custom("MadimiOne-Regular", size: 30))
@@ -119,7 +112,6 @@ struct ProgressView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.gray, lineWidth: 2)
                     )
-                    .offset(CGSize(width: 0, height: -295))
                 
                 Text(procentProgressArray[currentIndex])
                     .frame(width: 100, height: 58)
@@ -132,7 +124,6 @@ struct ProgressView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.gray, lineWidth: 2)
                     )
-                    .offset(CGSize(width: 0, height: -195))
                 
                 if currentIndex > 0 {
                     VStack {
@@ -161,7 +152,6 @@ struct ProgressView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.gray, lineWidth: 2)
                     )
-                    .offset(CGSize(width: 0, height: 25))
                 } else {
                     Text(descriptionText)
                         .padding(20)
@@ -175,7 +165,6 @@ struct ProgressView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.gray, lineWidth: 2)
                         )
-                        .offset(CGSize(width: 0, height: 25))
                 }
                 
                 HStack(spacing: 50) {
@@ -198,8 +187,6 @@ struct ProgressView: View {
                             )
                     }
                     .disabled(isBackButtonDisable)
-                    .offset(CGSize(width: 0, height: 195))
-                    
                     
                     Button(action: {
                         withAnimation {
@@ -220,15 +207,16 @@ struct ProgressView: View {
                             )
                     }
                     .disabled(isForwardButtonDisable)
-                    .offset(CGSize(width: 0, height: 195))
-                    
-                    
-                    
                 }
-                .navigationBarBackButtonHidden(true)
+                .offset(y: -50)
             }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .padding(EdgeInsets(top: 45, leading: 0, bottom: 0, trailing: 0))
+            }
+            .navigationBarBackButtonHidden(true)
         }
     }
+
 
 #Preview {
     ProgressView()

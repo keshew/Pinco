@@ -68,7 +68,7 @@ struct MenuView: View {
                                 .cornerRadius(15)
                             
                             
-                            Text("2500")
+                            Text("\(UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0)")
                                 .font(.custom("MadimiOne-Regular", size: 18))
                                 .foregroundColor(.yellow)
                                 .offset(x: 13)
@@ -87,7 +87,7 @@ struct MenuView: View {
                                 .frame(width: 96, height: 37)
                                 .cornerRadius(15)
                             
-                            Text("4")
+                            Text("\(UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0)")
                                 .font(.custom("MadimiOne-Regular", size: 18))
                                 .foregroundColor(.pink)
                                 .offset(x: 14)

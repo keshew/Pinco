@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct PauseView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var isMenuActive = false
+    @State private var isGameActive = false
     var body: some View {
         ZStack {
             Image("menuImage")
@@ -61,13 +63,13 @@ struct PauseView: View {
                 
                 HStack(spacing: 40) {
                     VStack {
-                        Text("daily")
+                        Text("retry")
                             .font(.custom("MadimiOne-Regular", size: 24))
                             .foregroundColor(.yellow)
                             .bold()
                             .offset(y: 20)
                         Button(action: {
-//                            isDailyRewardViewActive = true
+                            isGameActive = true
                         }) {
                             ZStack {
                                 Image("backgrounDailyShopButton")
@@ -75,24 +77,24 @@ struct PauseView: View {
                                     .scaledToFit()
                                     .frame(width: 124, height: 124)
                                 
-                                Image("dailyButton")
+                                Image("retryImage")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 80, height: 80)
+                                    .frame(width: 50, height: 50)
                             }
                             .frame(width: 104, height: 104)
                         }
                     }
                     
                     VStack {
-                        Text("shop")
+                        Text("menu")
                             .font(.custom("MadimiOne-Regular", size: 24))
                             .foregroundColor(.yellow)
                             .bold()
                             .offset(y: 20)
                         
                         Button(action: {
-//                            isShopActive = true
+                            isMenuActive = true
                         }) {
                             ZStack {
                                 Image("backgrounDailyShopButton")
@@ -100,7 +102,7 @@ struct PauseView: View {
                                     .scaledToFit()
                                     .frame(width: 124, height: 124)
                                 
-                                Image("shopButton")
+                                Image("homeButton")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80)
@@ -120,14 +122,14 @@ struct PauseView: View {
             .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
         
             Button(action: {
-//                isStageViewActive = true
+                presentationMode.wrappedValue.dismiss()
             }) {
                 ZStack {
                     Image("lightButton")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 324, height: 143)
-                    Text("PLAY")
+                    Text("RESUME")
                         .font(.custom("MadimiOne-Regular", size: 56))
                         .foregroundColor(.yellow)
                         .bold()
@@ -148,6 +150,10 @@ struct PauseView: View {
         }
         .navigationDestination(isPresented: $isMenuActive) {
             MenuView()
+        }
+        
+        .navigationDestination(isPresented: $isGameActive) {
+            GameView()
         }
         .navigationBarBackButtonHidden(true)
     }

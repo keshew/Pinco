@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */; };
 		867D461C2CB3E7650045467B /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867D461B2CB3E7650045467B /* MenuView.swift */; };
+		8682CA502CC9746C00D7599B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682CA4F2CC9746C00D7599B /* UserDefaultsManager.swift */; };
 		868F043B2CB1282400B3A759 /* PincoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F043A2CB1282400B3A759 /* PincoApp.swift */; };
 		868F043D2CB1282400B3A759 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F043C2CB1282400B3A759 /* ContentView.swift */; };
 		868F043F2CB1282500B3A759 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 868F043E2CB1282500B3A759 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		868F04542CB1387D00B3A759 /* MadimiOne-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 868F044D2CB1387D00B3A759 /* MadimiOne-Regular.woff */; };
 		868F04552CB1387D00B3A759 /* MadimiOne-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 868F044E2CB1387D00B3A759 /* MadimiOne-Regular.woff2 */; };
 		868F04562CB1387D00B3A759 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 868F044F2CB1387D00B3A759 /* stylesheet.css */; };
+		86A715182CC8EEA500CA70DC /* VictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A715172CC8EEA500CA70DC /* VictoryView.swift */; };
 		86B46FAC2CBABDFB009605DE /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAB2CBABDFB009605DE /* ShopView.swift */; };
 		86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46FAD2CBABFA7009605DE /* GameView.swift */; };
 		86C0F1A42CC7D039002C9B0F /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0F1A32CC7D039002C9B0F /* PauseView.swift */; };
@@ -31,6 +33,7 @@
 /* Begin PBXFileReference section */
 		8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardsView.swift; sourceTree = "<group>"; };
 		867D461B2CB3E7650045467B /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		8682CA4F2CC9746C00D7599B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		868F04372CB1282400B3A759 /* Pinco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868F043A2CB1282400B3A759 /* PincoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PincoApp.swift; sourceTree = "<group>"; };
 		868F043C2CB1282400B3A759 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		868F044E2CB1387D00B3A759 /* MadimiOne-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MadimiOne-Regular.woff2"; sourceTree = "<group>"; };
 		868F044F2CB1387D00B3A759 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		868F04572CB1396400B3A759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86A715172CC8EEA500CA70DC /* VictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryView.swift; sourceTree = "<group>"; };
 		86B46FAB2CBABDFB009605DE /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		86B46FAD2CBABFA7009605DE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		86C0F1A32CC7D039002C9B0F /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 				86B46FAB2CBABDFB009605DE /* ShopView.swift */,
 				86D622752CB5333C00A149C6 /* StageView.swift */,
 				86B46FAD2CBABFA7009605DE /* GameView.swift */,
+				86A715172CC8EEA500CA70DC /* VictoryView.swift */,
 				86C0F1A32CC7D039002C9B0F /* PauseView.swift */,
 				86F4FDC42CBFC7A000406592 /* LoseView.swift */,
 				86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */,
@@ -102,6 +107,7 @@
 				868F04572CB1396400B3A759 /* Info.plist */,
 				868F04502CB1387D00B3A759 /* Font */,
 				868F043A2CB1282400B3A759 /* PincoApp.swift */,
+				8682CA4F2CC9746C00D7599B /* UserDefaultsManager.swift */,
 				867D461A2CB3E75B0045467B /* View */,
 				868F043E2CB1282500B3A759 /* Assets.xcassets */,
 				868F04402CB1282500B3A759 /* Preview Content */,
@@ -209,6 +215,8 @@
 				86D622762CB5333C00A149C6 /* StageView.swift in Sources */,
 				868F04492CB130D400B3A759 /* FirstLaunchView.swift in Sources */,
 				8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */,
+				8682CA502CC9746C00D7599B /* UserDefaultsManager.swift in Sources */,
+				86A715182CC8EEA500CA70DC /* VictoryView.swift in Sources */,
 				86F4FDC52CBFC7A000406592 /* LoseView.swift in Sources */,
 				867D461C2CB3E7650045467B /* MenuView.swift in Sources */,
 				86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */,
