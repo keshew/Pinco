@@ -5,6 +5,8 @@ struct MenuView: View {
     @State private var isDailyRewardViewActive = false
     @State private var isShopActive = false
     @State private var isSoundEnable = true
+    @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+    @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
     
     var body: some View {
         NavigationStack {
@@ -68,7 +70,7 @@ struct MenuView: View {
                                 .cornerRadius(15)
                             
                             
-                            Text("\(UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0)")
+                            Text("\(currentMoney)")
                                 .font(.custom("MadimiOne-Regular", size: 18))
                                 .foregroundColor(.yellow)
                                 .offset(x: 13)
@@ -87,7 +89,7 @@ struct MenuView: View {
                                 .frame(width: 96, height: 37)
                                 .cornerRadius(15)
                             
-                            Text("\(UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0)")
+                            Text("\(currentLife)")
                                 .font(.custom("MadimiOne-Regular", size: 18))
                                 .foregroundColor(.pink)
                                 .offset(x: 14)
@@ -178,6 +180,10 @@ struct MenuView: View {
                     .scaledToFit()
                     .frame(minWidth: 253, maxWidth: 458, minHeight: 283, maxHeight: 498)
                     .offset(y: 265)
+            }
+            .onAppear() {
+                currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0 
+                currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
             }
             .navigationDestination(isPresented: $isStageViewActive) {
                 StageView()

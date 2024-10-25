@@ -25,7 +25,8 @@ struct ContentView: View {
                                                                                         "EARLY",
                                                                                         "EARLY",
                                                                                         "EARLY",
-                                                                                        "EARLY"])
+                                                                                        "EARLY"],
+                                       currentStage: 0)
         }
     }
 }

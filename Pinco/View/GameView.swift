@@ -7,12 +7,13 @@ struct Cell {
 }
 
 struct GameView: View {
+    @State private var currentIndex = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
     @State private var timer: Timer?
     @Environment(\.presentationMode) var presentationMode
     @State private var isLostGame = false
     @State private var isPuasedGame = false
     @State private var isVictoryGame = false
-    @State private var timeRemaining = 10
+    @State var timeRemaining = 120
     @State private var offset = CGSize.zero
     @State private var board: [[Cell]] = Array(repeating: Array(repeating: Cell(string: nil, image: nil), count: 7), count: 9)
     private let itemsArray: [String: String] = ["bowlImage": "bowlImage",
@@ -65,7 +66,7 @@ struct GameView: View {
     private func swapCellsToLeft(row1: Int, col1: Int) {
         let col2 = (col1 - 1) % board.count
         let temp = board[row1][col1]
-        if col2 > 0 {
+        if col2 >= 0 {
             board[row1][col1] = board[row1][col2]
             board[row1][col2] = temp
         }
@@ -73,10 +74,14 @@ struct GameView: View {
     private func swapCellsToRight(row1: Int, col1: Int) {
         let col2 = (col1 + 1) % board.count
         let temp = board[row1][col1]
-        if col2 < 0 {
+        if col2 < 7 {
             board[row1][col1] = board[row1][col2]
             board[row1][col2] = temp
         }
+    }
+    
+    func loseGame() {
+        UserDefaultsManager().minus(lifes: 1)
     }
     
     func previousPosition(row: Int, col: Int) {
@@ -91,29 +96,21 @@ struct GameView: View {
             }
         }
     }
+    
     func checkForMatches(board: [[Cell]]) -> Bool {
         let nameOfImageGoal = Array(goalImageDictionary.keys)
         let countOfMatchesGoal = Array(goalImageDictionary.values)
         let allZeros = countOfMatchesGoal.allSatisfy { $0 == 0 }
         var matches: [(Int, Int)] = []
-        // Проверка по горизонтали
-        //перечисление от нуля до всех внутренних массивов внешнего (5 штук)
         for row in 0..<board.count {
-            //перечисление от нуля до элементов каждого внутреннего массива(5штук) - 2 (чтобы было три в ряд)
             for col in 0..<board[row].count - 2 {
-                //идет проверка и переменной инциаилизаруется значение элемента внутреннего массива например 1
                 if let value = board[row][col].string,
-                   //если это значение равняется с соседним элементом
                    value == board[row][col + 1].string,
-                   //если это значение равняется с элементом через один элемент
                    value == board[row][col + 2].string {
-                    //доавляем эти значения в массив
-                    
                     matches.append((row, col))
                     matches.append((row, col + 1))
                     matches.append((row, col + 2))
                    
-                    
                     for item in nameOfImageGoal {
                         if value == item {
                             goalImageDictionary[value] = 0
@@ -123,7 +120,6 @@ struct GameView: View {
             }
         }
     
-
         for col in 0..<board[0].count {
             for row in 0..<board.count - 2 {
                 if let value = board[row][col].string,
@@ -137,7 +133,6 @@ struct GameView: View {
                             goalImageDictionary[value] = 0
                         }
                     }
-                   
                 }
             }
         }
@@ -152,6 +147,7 @@ struct GameView: View {
         
         if allZeros {
             isVictoryGame = true
+            self.timer?.invalidate()
         }
         
         if !matches.isEmpty {
@@ -161,14 +157,15 @@ struct GameView: View {
         }
     }
     func startTimer() {
-        timeRemaining = 120
+//        timeRemaining = 120
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
-                checkForMatches(board: board)
+                _ = checkForMatches(board: board)
             } else {
                 self.timer?.invalidate()
                 isLostGame = true
+                loseGame()
             }
         }
     }
@@ -184,7 +181,7 @@ struct GameView: View {
                 HStack(spacing: 15) {
                     Button(action: {
                         isPuasedGame = true
-                        //TIMER
+                        self.timer?.invalidate()
                         print(timeRemaining)
                     }) {
                         ZStack {
@@ -202,7 +199,7 @@ struct GameView: View {
                         .frame(width: 63, height: 63)
                     }
                     
-                    Text("LEVEL 1")
+                    Text("LEVEL \(currentIndex + 1)")
                         .frame(width: 180, height: 68)
                         .font(.custom("MadimiOne-Regular", size: 30))
                         .background((Color(#colorLiteral(red: 154/255, green: 34/255, blue: 32/255, alpha: 0.95))))
@@ -343,6 +340,9 @@ struct GameView: View {
             .onAppear {
                 setupBoard()
                 startTimer()
+                currentIndex = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
+                let rem = timeRemaining
+                timeRemaining = rem
             }
             
             HStack(spacing: 65) {
@@ -446,7 +446,7 @@ struct GameView: View {
             LoseView()
         }
         .navigationDestination(isPresented: $isPuasedGame) {
-            PauseView()
+            PauseView(timeRemaining: $timeRemaining)
         }
         
         .navigationDestination(isPresented: $isVictoryGame) {

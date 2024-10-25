@@ -3,21 +3,11 @@ import SwiftUI
 struct DailyRewardsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var currentIndex = 0
-    @State private var isDisableGift = true
     @State private var currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
     @State private var currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
     let items = Array(1...7)
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 150))]
-//    @State var isClaimedArray = ["EARLY",
-//                          "EARLY",
-//                          "EARLY",
-//                          "EARLY",
-//                          "EARLY",
-//                          "EARLY",
-//                          "EARLY"]
-    
-    @State var isClaimedArray2 = UserDefaultsManager.defaults.object(forKey: Keys.earlyKey.rawValue) ?? [""]
-    
+
     var dailyCountOfGiftArray = [100,
                                  1,
                                  250,
@@ -50,27 +40,27 @@ struct DailyRewardsView: View {
                                      .pink,
                                      .yellow]
     
-    func currentAvailbleGifts() {
-        if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
-            let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
-            print("Количество дней с первого запуска: \(daysPassed)")
-            if daysPassed < 7 {
-                let range = daysPassed...daysPassed
-                var array = returnArray()
-                array[range] = ["CLAIM"]
-                UserDefaultsManager().add(isReadyToGet: array)
-            }
-        }
-    }
+//    func currentAvailbleGifts() {
+//        if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
+//            let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
+//            print("Количество дней с первого запуска: \(daysPassed)")
+//            if daysPassed < 7 {
+//                let range = daysPassed...daysPassed
+//                var array = returnArray()
+//                array[range] = ["CLAIM"]
+//                UserDefaultsManager().add(isReadyToGet: array)
+//            }
+//        }
+//    }
     
     func gotGift() {
-        isDisableGift = false
         if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
             let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
             if daysPassed < 7 {
                 let range = daysPassed...daysPassed
                 var array = returnArray()
                 array[range] = ["CLAIMED"]
+                print(array)
                 UserDefaultsManager().add(isReadyToGet: array)
             }
         }
@@ -208,14 +198,14 @@ struct DailyRewardsView: View {
                                 }
                                 .offset(y: 10)
                                 
-                                if returnArray()[index] == "EARLY", returnArray()[index] == "CLAIMED" {
                                     Button(action: {
                                         if dailyCountOfGiftArray[index] % 2 == 0 {
                                             UserDefaultsManager().add(money: dailyCountOfGiftArray[index])
-                                            currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
                                             gotGift()
+                                            currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
                                         } else {
                                             UserDefaultsManager().add(lifes: dailyCountOfGiftArray[index])
+                                            gotGift()
                                             currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
                                         }
                                     }) {
@@ -231,36 +221,10 @@ struct DailyRewardsView: View {
                                                 .foregroundColor(.yellow)
                                         }
                                     }
-                                    .disabled(isDisableGift)
+                                    .disabled(returnArray()[index] == "CLAIM" ? false : true)
                                     .frame(width: 110, height: 35)
                                     .offset(y: 105)
-                                } else {
-                                    Button(action: {
-                                        if dailyCountOfGiftArray[index] % 2 == 0 {
-                                            UserDefaultsManager().add(money: dailyCountOfGiftArray[index])
-                                            currentMoneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 00
-                                            gotGift()
-                                        } else {
-                                            UserDefaultsManager().add(lifes: dailyCountOfGiftArray[index])
-                                            currentLifesCount = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 00
-                                        }
-                                    }) {
-                                        ZStack {
-                                            Image("lightButton")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 140, height: 90)
-                                                .cornerRadius(15)
-                                            
-                                            Text(returnArray()[index])
-                                                .font(.custom("MadimiOne-Regular", size: 20))
-                                                .foregroundColor(.yellow)
-                                        }
-                                    }
-                                    .disabled(!isDisableGift)
-                                    .frame(width: 110, height: 35)
-                                    .offset(y: 105)
-                                }
+//                                }
                             }
                         }
                     }
@@ -271,7 +235,8 @@ struct DailyRewardsView: View {
             .padding(EdgeInsets(top: 50, leading: 10, bottom: 0, trailing: 0))
         }
         .onAppear() {
-            currentAvailbleGifts()
+//            currentAvailbleGifts()
+            
         }
         .navigationBarBackButtonHidden(true)
     }

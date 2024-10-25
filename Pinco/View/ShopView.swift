@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ShopView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+    @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 150))]
     private let items = Array(1...3)
     private let labelArray = ["COIN", "HEALTH", "TOOL"]
@@ -60,7 +62,7 @@ struct ShopView: View {
                             .cornerRadius(15)
                         
                         
-                        Text("2500")
+                        Text("\(currentMoney)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.yellow)
                             .offset(x: 13)
@@ -79,7 +81,7 @@ struct ShopView: View {
                             .frame(width: 96, height: 37)
                             .cornerRadius(15)
                         
-                        Text("4")
+                        Text("\(currentLife)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.pink)
                             .offset(x: 14)

@@ -1,9 +1,29 @@
 import SwiftUI
 
 struct VictoryView: View {
+    @State private var currentIndex = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
     @State private var isMenuActive = false
     @State private var isStageActive = false
     @State private var isGameActive = false
+    var imageProgressArray =  ["microvawe",
+                                "microvawe",
+                                 "touchbox",
+                                 "spiritual",
+                                 "sink",
+                                 "cupboard",
+                                 "fridge",
+                                 "gasStove"]
+    
+    var itemProgressArray =     ["MICROWAVE",
+                                 "MICROWAVE",
+                                 "TOUCHBOX",
+                                 "SPIRITUAL",
+                                 "SINK",
+                                 "CUPBOARD",
+                                 "FRIDGE",
+                                 "GAS STOVE"]
+
+    
     var body: some View {
         ZStack {
             Image("menuImage")
@@ -99,7 +119,7 @@ struct VictoryView: View {
                             .bold()
                             .multilineTextAlignment(.center)
                         
-                        Image("microvawe")
+                        Image(imageProgressArray[currentIndex])
                             .resizable()
                             .scaledToFit()
                             .frame(width: 124, height: 104)
@@ -111,7 +131,7 @@ struct VictoryView: View {
                             )
                          
                     }
-                    Text("CONGRATULATIONS, YOU GOT MICROVAWE")
+                    Text("CONGRATULATIONS, YOU GOT \(itemProgressArray[currentIndex])")
                         .font(.custom("MadimiOne-Regular", size: 18))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
@@ -152,6 +172,15 @@ struct VictoryView: View {
                 .frame(minWidth: 253, maxWidth: 438, minHeight: 283, maxHeight: 338)
                 .offset(x: -75, y: 265)
         }
+        .onAppear {
+            UserDefaultsManager().add(money: 150)
+            if UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) < 7 {
+                UserDefaultsManager().add(stage: 1)
+            } else {
+                UserDefaultsManager.defaults.set(7, forKey: Keys.indexForStage.rawValue)
+            }
+            currentIndex = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
+        }
         .navigationDestination(isPresented: $isMenuActive) {
             MenuView()
         }
@@ -170,150 +199,3 @@ struct VictoryView: View {
 #Preview {
     VictoryView()
 }
-
-
-//import SwiftUI
-//
-//struct PauseView: View {
-//    @State private var isMenuActive = false
-//    var body: some View {
-//        ZStack(alignment: .bottom) {
-//            Image("menuImage")
-//                .resizable()
-//                .scaledToFill()
-//                .ignoresSafeArea()
-//
-//            VStack(spacing: 10) {
-//                Text("PAUSE")
-//                    .font(.custom("MadimiOne-Regular", size: 34))
-//                    .foregroundColor(.white)
-//
-//                HStack(spacing: 50) {
-//                ZStack {
-//                    Image("moneyBackground")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 96, height: 36)
-//                        .cornerRadius(15)
-//                        .offset(x: 5, y: 13)
-//
-//                    Text("2500")
-//                        .font(.custom("MadimiOne-Regular", size: 18))
-//                        .foregroundColor(.yellow)
-//                        .offset(x: 20, y: 13)
-//
-//                    Image("moneyCount")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 65, height: 65)
-//                        .offset(x: -30, y: 13)
-//                }
-//
-//                ZStack {
-//                    Image("moneyBackground")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 96, height: 36)
-//                        .cornerRadius(15)
-//                        .offset(x: 5, y: 13)
-//
-//                    Text("4")
-//                        .font(.custom("MadimiOne-Regular", size: 18))
-//                        .foregroundColor(.pink)
-//                        .offset(x: 14, y: 13)
-//
-//                    Image("heartImage")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 65, height: 65)
-//                        .offset(x: -30, y: 13)
-//                }
-//            }
-//                HStack(spacing: 91) {
-//                    Text("retry")
-//                        .font(.custom("MadimiOne-Regular", size: 24))
-//                        .foregroundColor(.yellow)
-//                        .bold()
-//
-//                    Text("menu")
-//                        .font(.custom("MadimiOne-Regular", size: 24))
-//                        .foregroundColor(.yellow)
-//                        .bold()
-//                }
-//                HStack(spacing: 40) {
-//                    Button(action: {
-//    //                    isMenuActive = true
-//                    }) {
-//                        ZStack {
-//                            Image("backgrounDailyShopButton")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 124, height: 124)
-//
-//                            Image("retryImage")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 50, height: 50)
-//                        }
-//                        .frame(width: 104, height: 104)
-//                    }
-//
-//                    Button(action: {
-//                        isMenuActive = true
-//                    }) {
-//                        ZStack {
-//                            Image("backgrounDailyShopButton")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fill)
-//                                .frame(width: 124, height: 124)
-//
-//                            Image("homeButton")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 70, height: 70)
-//                        }
-//                        .frame(width: 104, height: 104)
-//                    }
-//                }
-//                Button(action: {
-//
-//                }) {
-//                    ZStack {
-//                        Image("lightButton")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(width: 350, height: 93)
-//                        Text("RESUME")
-//                            .font(.custom("MadimiOne-Regular", size: 44))
-//                            .foregroundColor(.yellow)
-//                            .bold()
-//                            .offset(y: 4)
-//                    }
-//                    .frame(width: 273, height: 113)
-//                }
-//
-//                Text("GAME PAUSED")
-//                    .font(.custom("MadimiOne-Regular", size: 24))
-//                    .foregroundColor(.white)
-//                    .multilineTextAlignment(.center)
-//
-//            }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-//            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-//
-//                Image("menuWoman")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 316, height: 296, alignment: .center)
-//                    .offset(y: 55)
-//        }
-//        .navigationDestination(isPresented: $isMenuActive) {
-//            MenuView()
-//        }
-//        .navigationBarBackButtonHidden(true)
-//    }
-//}
-//
-//#Preview {
-//    PauseView()
-//}

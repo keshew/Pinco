@@ -1,9 +1,13 @@
 import SwiftUI
 
 struct PauseView: View {
+    @Binding var timeRemaining: Int
     @Environment(\.presentationMode) var presentationMode
     @State private var isMenuActive = false
     @State private var isGameActive = false
+    @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+    @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
+    
     var body: some View {
         ZStack {
             Image("menuImage")
@@ -29,7 +33,7 @@ struct PauseView: View {
                             .cornerRadius(15)
                         
                         
-                        Text("2500")
+                        Text("\(currentMoney)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.yellow)
                             .offset(x: 13)
@@ -48,7 +52,7 @@ struct PauseView: View {
                             .frame(width: 96, height: 37)
                             .cornerRadius(15)
                         
-                        Text("4")
+                        Text("\(currentLife)")
                             .font(.custom("MadimiOne-Regular", size: 18))
                             .foregroundColor(.pink)
                             .offset(x: 14)
@@ -95,6 +99,7 @@ struct PauseView: View {
                         
                         Button(action: {
                             isMenuActive = true
+                            UserDefaultsManager().minus(lifes: 1)
                         }) {
                             ZStack {
                                 Image("backgrounDailyShopButton")
@@ -123,6 +128,7 @@ struct PauseView: View {
         
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
+                timeRemaining = timeRemaining
             }) {
                 ZStack {
                     Image("lightButton")
@@ -148,6 +154,11 @@ struct PauseView: View {
                 .frame(minWidth: 253, maxWidth: 458, minHeight: 283, maxHeight: 498)
                 .offset(y: 265)
         }
+        .onAppear() {
+            currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+            currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
+        }
+        
         .navigationDestination(isPresented: $isMenuActive) {
             MenuView()
         }
@@ -159,9 +170,9 @@ struct PauseView: View {
     }
 }
 
-#Preview {
-    PauseView()
-}
+//#Preview {
+//    PauseView(timeRemaining: $timeRemaining)
+//}
 
 
 //import SwiftUI
