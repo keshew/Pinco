@@ -1,25 +1,17 @@
 import SwiftUI
 
-struct ShopView: View {
+struct ToolShopView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var isCoinShopAvailable = false
-    @State var isHealthShopAvailable = false
-    @State var isToolShopAvailable = false
     @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
     @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
-    let columns: [GridItem] = [GridItem(.adaptive(minimum: 150))]
+    let columns: [GridItem] = [GridItem(.adaptive(minimum: 250))]
     private let items = Array(1...3)
-    private let labelArray = ["COIN", "HEALTH", "TOOL"]
-    private let  giftImageArray = ["moneyCount",
-                                   "heartImage",
-                                   "moneyCount"]
-    private let toolsImageArray = ["rocketTool", "bombTool", "greandeTool"]
-    private let sizeForImages: [CGFloat] = [59,79,95]
+    private let labelArray = ["BEGGINER", "ADVANCED", "EXPERIENCED"]
+    private let amountLifes = [1, 3, 5]
+    private let priceForLifes = [150, 250, 450]
+    private let toolsImageArray = ["rocketTool", "greandeTool", "bombTool"]
+    private let sizeForImages: [CGFloat] = [120,120,120]
     
-    func number(index: Int) {
-        var array = [isCoinShopAvailable,isHealthShopAvailable]
-        array[index] = true
-    }
     var body: some View {
         ZStack {
             Image("firstStage")
@@ -49,9 +41,9 @@ struct ShopView: View {
             .padding(EdgeInsets(top: 20, leading: 30, bottom: 0, trailing: 0))
             
             VStack {
-                Text("SHOP")
-                    .frame(width: 158, height: 66)
-                    .font(.custom("MadimiOne-Regular", size: 30))
+                Text("SHOP      TOOL")
+                    .frame(width: 208, height: 108)
+                    .font(.custom("MadimiOne-Regular", size: 35))
                     .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -104,114 +96,85 @@ struct ShopView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 35) {
                         ForEach(Array(items.enumerated()), id: \.1) { index, item in
-                            if index == 2 {
                                 ZStack {
                                     Rectangle()
                                         .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
-                                        .frame(width: 155, height: 244)
+                                        .frame(width: 259, height: 249)
                                         .cornerRadius(20)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 20)
                                                 .stroke(Color.gray, lineWidth: 2)
                                         )
                                     
-                                    Text(labelArray[index])
-                                        .frame(minWidth: 150, minHeight: 190)
-                                        .cornerRadius(8)
-                                        .font(.custom("MadimiOne-Regular", size: 34))
-                                        .foregroundColor(.white)
-                                        .offset(x: 0, y: -70)
-                                        .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                                    
-                                    ZStack {
-                                        Image("bombTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: -30, y: 45)
-
-                                        Image("greandeTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 35, y: 45)
-                                        
-                                        Image("rocketTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 0, y: 50)
-                                    }
-                                    .offset(y: -40)
-                                    ZStack {
-                                        Button(action: {
-                                            isToolShopAvailable = true
-                                        }) {
+                                    VStack {
+                                        HStack(spacing: 40) {
                                             ZStack {
-                                                Image("lightButton")
+                                                Image("moneyBackground")
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(width: 140, height: 90)
+                                                    .frame(width: 58, height: 27)
                                                     .cornerRadius(15)
                                                 
-                                                Text("CHECK")
-                                                    .font(.custom("MadimiOne-Regular", size: 20))
+                                                
+                                                Text("150")
+                                                    .font(.custom("MadimiOne-Regular", size: 18))
                                                     .foregroundColor(.yellow)
+                                                    .offset(x: 3)
+                                                
+                                                Image("moneyCount")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 31, height: 31)
+                                                    .offset(x: -30)
                                             }
-                                            .frame(width: 110, height: 50)
-                                        }
-                                        .offset(y: 110)
-                                    }
-                                }
-                                .offset(x: UIScreen.main.bounds.width / 4.5)
-                            } else {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
-                                        .frame(width: 155, height: 244)
-                                        .cornerRadius(20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.gray, lineWidth: 2)
-                                        )
-                                    
-                                    Text(labelArray[index])
-                                        .frame(minWidth: 150, minHeight: 190)
-                                        .cornerRadius(8)
-                                        .font(.custom("MadimiOne-Regular", size: 34))
-                                        .foregroundColor(.white)
-                                        .offset(x: 0, y: -70)
-                                        .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                                    
-                                    ZStack {
-                                        Image(giftImageArray[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: -20, y: 40)
-                                        
-                                        Image(giftImageArray[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 20, y: 40)
                                             
-                                        Image(giftImageArray[index])
+                                            Text("ROCKET")
+                                                .font(.custom("MadimiOne-Regular", size: 28))
+                                                .foregroundColor(.white)
+                                        }
+                                        .offset(x: 5, y: -90)
+                                    }
+                                    
+                                    
+                                    VStack(spacing: 20) {
+                                        Text("LEVEL 1 > LEVEL 2")
+                                            .font(.custom("MadimiOne-Regular", size: 15))
+                                            .foregroundColor(.white)
+                                        
+                                        Text("BREAKS A ROW, EITHER HORIZONTALLY OR VERTICALLY")
+                                            .font(.custom("MadimiOne-Regular", size: 12))
+                                            .lineLimit(4)
+                                            .multilineTextAlignment(.center)
+                                            .foregroundColor(.white)
+                                    }
+                                    .offset(x: 53, y: -10)
+                                    .frame(width: 120)
+                                    
+                                    HStack(spacing: -80) {
+                                        Image(toolsImageArray[index])
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset( y: 70)
+                                        
+                                        Path { path in
+                                                    path.move(to: CGPoint(x: 75, y: 65))
+                                                    path.addLine(to: CGPoint(x: 75, y: 175))
+                                                }
+                                                .stroke(Color.gray, lineWidth: 3)
                                     }
-                                    .offset(y: -40)
+                                    .frame(width: 130)
+                                    .offset(x: -70)
                                     
+                                    Text("2 BLOKS > 3 BLOKS")
+                                        .font(.custom("MadimiOne-Regular", size: 18))
+                                        .foregroundColor(.yellow)
+                                        .offset(x: 2, y: 73)
                                     
                                     ZStack {
                                         Button(action: {
-                                            if index == 0 {
-                                                isCoinShopAvailable = true
-                                            } else {
-                                                isHealthShopAvailable = true
-                                            }
+//                                            UserDefaultsManager().buyLifes(lifes: amountLifes[index], cost: priceForLifes[index])
+//                                            currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+//                                            currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
                                         }) {
                                             ZStack {
                                                 Image("lightButton")
@@ -219,17 +182,18 @@ struct ShopView: View {
                                                     .scaledToFit()
                                                     .frame(width: 140, height: 90)
                                                     .cornerRadius(15)
+                                                    .offset(x: 0, y: 50)
                                                 
-                                                Text("CHECK")
+                                                Text("BOOST")
                                                     .font(.custom("MadimiOne-Regular", size: 20))
                                                     .foregroundColor(.yellow)
+                                                    .offset( y: 50)
                                             }
-                                            .frame(width: 100, height: 40)
                                         }
-                                        .offset(y: 110)
+                                        .frame(width: 110, height: 45)
+                                        .offset(y: 60)
                                     }
                                 }
-                            }
                         }
                     }
                     .padding(20)
@@ -238,27 +202,14 @@ struct ShopView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
         }
-        
         .onAppear() {
             currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
             currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
         }
         .navigationBarBackButtonHidden(true)
-        
-        .navigationDestination(isPresented: $isCoinShopAvailable) {
-            CoinShopView()
-        }
-        
-        .navigationDestination(isPresented: $isToolShopAvailable) {
-            ToolShopView()
-        }
-        
-        .navigationDestination(isPresented: $isHealthShopAvailable) {
-            HealthShopView()
-        }
     }
 }
 
 #Preview {
-    ShopView()
+    ToolShopView()
 }

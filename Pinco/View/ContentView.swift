@@ -19,13 +19,15 @@ struct ContentView: View {
         UserDefaultsManager().checkFirstLaunch()
         if isFirstLaunch {
             UserDefaultsManager.defaults.set(true, forKey: Keys.isFirstLauchKey.rawValue)
-            UserDefaultsManager().save(countMoney: 2500, countLifes: 4, isReadyToGet:   ["CLAIM",
-                                                                                        "EARLY",
-                                                                                        "EARLY",
-                                                                                        "EARLY",
-                                                                                        "EARLY",
-                                                                                        "EARLY",
-                                                                                        "EARLY"],
+            UserDefaultsManager().save(countMoney: 2500,
+                                       countLifes: 4,
+                                       isReadyToGet: ["CLAIM",
+                                                     "EARLY",
+                                                     "EARLY",
+                                                     "EARLY",
+                                                     "EARLY",
+                                                     "EARLY",
+                                                     "EARLY"],
                                        currentStage: 0)
         }
     }

@@ -15,8 +15,8 @@ class UserDefaultsManager {
     func currentAvailbleGifts() {
         if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
             let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
-            
-            if daysPassed < 7 {
+            let dayPassedWith = daysPassed + 1
+            if dayPassedWith < 7 {
                 var array = [""]
                 if let savedData = UserDefaultsManager.defaults.data(forKey: Keys.earlyKey.rawValue) {
                     let decoder = JSONDecoder()
@@ -24,7 +24,7 @@ class UserDefaultsManager {
                         array =  loadedArray
                     }
                 }
-                let range = daysPassed...daysPassed
+                let range = dayPassedWith...dayPassedWith
                 array[range] = ["CLAIM"]
                 UserDefaultsManager().add(isReadyToGet: array)
             }
@@ -45,7 +45,7 @@ class UserDefaultsManager {
     
     func add(stage: Int) {
         if  UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) <= 7 {
-            var currentValue = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
+            let currentValue = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
             UserDefaultsManager.defaults.set(currentValue + stage, forKey: Keys.indexForStage.rawValue)
         }
     }
@@ -69,7 +69,7 @@ class UserDefaultsManager {
     
     func minus(money: Int) {
         let current = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int
-        if current > money {
+        if current >= money {
             UserDefaultsManager.defaults.set(current - money, forKey: Keys.moneyKey.rawValue)
         }
     }
@@ -77,7 +77,19 @@ class UserDefaultsManager {
     func minus(lifes: Int) {
         let current = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) as! Int
         if current > lifes {
+//            if current >= lifes {
             UserDefaultsManager.defaults.set(current - lifes, forKey: Keys.lifesKey.rawValue)
+        }
+    }
+    
+    func buyLifes(lifes: Int, cost: Int) {
+        let moneyCount = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int
+        if moneyCount - cost < 0 {
+           print("You have not enough money to buy it")
+        } else if moneyCount - cost >= 0 {
+            minus(money: cost)
+            let current = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue)
+            UserDefaultsManager.defaults.set(current as! Int + lifes, forKey: Keys.lifesKey.rawValue)
         }
     }
     

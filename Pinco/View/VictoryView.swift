@@ -95,6 +95,11 @@ struct VictoryView: View {
                             .offset(y: 20)
                         Button(action: {
                             isMenuActive = true
+                            if UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) < 7 {
+                                UserDefaultsManager().add(stage: 1)
+                            } else {
+                                UserDefaultsManager.defaults.set(7, forKey: Keys.indexForStage.rawValue)
+                            }
                         }) {
                             ZStack {
                                 Image("backgrounDailyShopButton")
@@ -147,6 +152,11 @@ struct VictoryView: View {
         
             Button(action: {
                 isStageActive = true
+                if UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) < 7 {
+                    UserDefaultsManager().add(stage: 1)
+                } else {
+                    UserDefaultsManager.defaults.set(7, forKey: Keys.indexForStage.rawValue)
+                }
             }) {
                 ZStack {
                     Image("lightButton")
@@ -174,11 +184,6 @@ struct VictoryView: View {
         }
         .onAppear {
             UserDefaultsManager().add(money: 150)
-            if UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) < 7 {
-                UserDefaultsManager().add(stage: 1)
-            } else {
-                UserDefaultsManager.defaults.set(7, forKey: Keys.indexForStage.rawValue)
-            }
             currentIndex = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
         }
         .navigationDestination(isPresented: $isMenuActive) {

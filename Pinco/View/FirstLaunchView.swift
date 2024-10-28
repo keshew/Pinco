@@ -81,7 +81,6 @@ struct FirstLaunchView: View {
                             .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
                             .foregroundColor(.clear)
                     }
-                    
                 }
                 
                 Text(textFirstLauchArray[currentTextIndex])

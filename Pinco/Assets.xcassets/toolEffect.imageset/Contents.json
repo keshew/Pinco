@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "e781f694ab3687229864eedaf57ad191.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "moneyCount.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

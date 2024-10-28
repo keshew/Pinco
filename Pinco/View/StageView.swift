@@ -269,7 +269,6 @@ struct StageView: View {
         }
         .onAppear() {
             cuurentStage = UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue)
-            print("\(cuurentStage)")
         }
         .navigationDestination(isPresented: $isProgressViewActive) {
             ProgressView()

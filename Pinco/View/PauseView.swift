@@ -74,6 +74,7 @@ struct PauseView: View {
                             .offset(y: 20)
                         Button(action: {
                             isGameActive = true
+                            UserDefaultsManager().minus(lifes: 1)
                         }) {
                             ZStack {
                                 Image("backgrounDailyShopButton")
@@ -136,7 +137,7 @@ struct PauseView: View {
                         .scaledToFit()
                         .frame(width: 324, height: 143)
                     Text("RESUME")
-                        .font(.custom("MadimiOne-Regular", size: 56))
+                        .font(.custom("MadimiOne-Regular", size: 46))
                         .foregroundColor(.yellow)
                         .bold()
                         .offset(y: 4)

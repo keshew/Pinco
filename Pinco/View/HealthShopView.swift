@@ -1,25 +1,17 @@
 import SwiftUI
 
-struct ShopView: View {
+struct HealthShopView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var isCoinShopAvailable = false
-    @State var isHealthShopAvailable = false
-    @State var isToolShopAvailable = false
     @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
     @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 150))]
-    private let items = Array(1...3)
-    private let labelArray = ["COIN", "HEALTH", "TOOL"]
-    private let  giftImageArray = ["moneyCount",
-                                   "heartImage",
-                                   "moneyCount"]
-    private let toolsImageArray = ["rocketTool", "bombTool", "greandeTool"]
-    private let sizeForImages: [CGFloat] = [59,79,95]
+    private let items = Array(1...4)
+    private let labelArray = ["BEGGINER", "ADVANCED", "EXPERIENCED", "PRO"]
+    private let amountLifes = [1, 3, 5, 20]
+    private let priceForLifes = [150, 250, 450, 1000]
+    private let toolsImageArray = ["heartImage", "advancedHealth", "experiencedHealth", "proHealth"]
+    private let sizeForImages: [CGFloat] = [79,155,155,155]
     
-    func number(index: Int) {
-        var array = [isCoinShopAvailable,isHealthShopAvailable]
-        array[index] = true
-    }
     var body: some View {
         ZStack {
             Image("firstStage")
@@ -49,9 +41,9 @@ struct ShopView: View {
             .padding(EdgeInsets(top: 20, leading: 30, bottom: 0, trailing: 0))
             
             VStack {
-                Text("SHOP")
-                    .frame(width: 158, height: 66)
-                    .font(.custom("MadimiOne-Regular", size: 30))
+                Text("SHOP HEALTH")
+                    .frame(width: 208, height: 108)
+                    .font(.custom("MadimiOne-Regular", size: 35))
                     .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -104,7 +96,6 @@ struct ShopView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 35) {
                         ForEach(Array(items.enumerated()), id: \.1) { index, item in
-                            if index == 2 {
                                 ZStack {
                                     Rectangle()
                                         .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
@@ -118,34 +109,29 @@ struct ShopView: View {
                                     Text(labelArray[index])
                                         .frame(minWidth: 150, minHeight: 190)
                                         .cornerRadius(8)
-                                        .font(.custom("MadimiOne-Regular", size: 34))
+                                        .font(.custom("MadimiOne-Regular", size: 22))
                                         .foregroundColor(.white)
-                                        .offset(x: 0, y: -70)
+                                        .offset(x: 0, y: -80)
                                         .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
                                     
                                     ZStack {
-                                        Image("bombTool")
+                                        Image(toolsImageArray[index])
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: -30, y: 45)
-
-                                        Image("greandeTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 35, y: 45)
+                                            .offset(x: 0, y: 35)
                                         
-                                        Image("rocketTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 0, y: 50)
+                                        Text("\(amountLifes[index]) pcs")
+                                            .font(.custom("MadimiOne-Regular", size: 16))
+                                            .foregroundColor(.yellow)
+                                            .offset(x: 2, y: 110)
                                     }
                                     .offset(y: -40)
                                     ZStack {
                                         Button(action: {
-                                            isToolShopAvailable = true
+                                            UserDefaultsManager().buyLifes(lifes: amountLifes[index], cost: priceForLifes[index])
+                                            currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
+                                            currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
                                         }) {
                                             ZStack {
                                                 Image("lightButton")
@@ -154,82 +140,23 @@ struct ShopView: View {
                                                     .frame(width: 140, height: 90)
                                                     .cornerRadius(15)
                                                 
-                                                Text("CHECK")
-                                                    .font(.custom("MadimiOne-Regular", size: 20))
-                                                    .foregroundColor(.yellow)
-                                            }
-                                            .frame(width: 110, height: 50)
-                                        }
-                                        .offset(y: 110)
-                                    }
-                                }
-                                .offset(x: UIScreen.main.bounds.width / 4.5)
-                            } else {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
-                                        .frame(width: 155, height: 244)
-                                        .cornerRadius(20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.gray, lineWidth: 2)
-                                        )
-                                    
-                                    Text(labelArray[index])
-                                        .frame(minWidth: 150, minHeight: 190)
-                                        .cornerRadius(8)
-                                        .font(.custom("MadimiOne-Regular", size: 34))
-                                        .foregroundColor(.white)
-                                        .offset(x: 0, y: -70)
-                                        .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                                    
-                                    ZStack {
-                                        Image(giftImageArray[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: -20, y: 40)
-                                        
-                                        Image(giftImageArray[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 20, y: 40)
-                                            
-                                        Image(giftImageArray[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset( y: 70)
-                                    }
-                                    .offset(y: -40)
-                                    
-                                    
-                                    ZStack {
-                                        Button(action: {
-                                            if index == 0 {
-                                                isCoinShopAvailable = true
-                                            } else {
-                                                isHealthShopAvailable = true
-                                            }
-                                        }) {
-                                            ZStack {
-                                                Image("lightButton")
+                                                Image("moneyCount")
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(width: 140, height: 90)
+                                                    .frame(width: 24, height: 24)
                                                     .cornerRadius(15)
+                                                    .offset(x: 23)
                                                 
-                                                Text("CHECK")
+                                                Text("\(priceForLifes[index])")
                                                     .font(.custom("MadimiOne-Regular", size: 20))
                                                     .foregroundColor(.yellow)
+                                                    .offset(x: -15)
                                             }
                                             .frame(width: 100, height: 40)
                                         }
                                         .offset(y: 110)
                                     }
                                 }
-                            }
                         }
                     }
                     .padding(20)
@@ -238,27 +165,14 @@ struct ShopView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
         }
-        
         .onAppear() {
             currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
             currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
         }
         .navigationBarBackButtonHidden(true)
-        
-        .navigationDestination(isPresented: $isCoinShopAvailable) {
-            CoinShopView()
-        }
-        
-        .navigationDestination(isPresented: $isToolShopAvailable) {
-            ToolShopView()
-        }
-        
-        .navigationDestination(isPresented: $isHealthShopAvailable) {
-            HealthShopView()
-        }
     }
 }
 
 #Preview {
-    ShopView()
+    HealthShopView()
 }
