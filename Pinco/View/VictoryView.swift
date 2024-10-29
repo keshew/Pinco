@@ -6,23 +6,24 @@ struct VictoryView: View {
     @State private var isStageActive = false
     @State private var isGameActive = false
     var imageProgressArray =  ["microvawe",
-                                "microvawe",
-                                 "touchbox",
-                                 "spiritual",
-                                 "sink",
-                                 "cupboard",
-                                 "fridge",
-                                 "gasStove"]
+                               "touchbox",
+                               "spiritual",
+                               "sink",
+                               "cupboard",
+                               "fridge",
+                               "gasStove",
+                               "fireWorkCustom",
+    ]
     
     var itemProgressArray =     ["MICROWAVE",
-                                 "MICROWAVE",
                                  "TOUCHBOX",
                                  "SPIRITUAL",
                                  "SINK",
                                  "CUPBOARD",
                                  "FRIDGE",
-                                 "GAS STOVE"]
-
+                                 "GAS STOVE",
+                                 "FIRST STAGE!"]
+    
     
     var body: some View {
         ZStack {
@@ -118,38 +119,52 @@ struct VictoryView: View {
                 }
                 VStack {
                     HStack(spacing: 5) {
-                        Text("+")
-                            .font(.custom("MadimiOne-Regular", size: 28))
-                            .foregroundColor(.white)
-                            .bold()
-                            .multilineTextAlignment(.center)
-                        
-                        Image(imageProgressArray[currentIndex])
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 124, height: 104)
-                            .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray, lineWidth: 2)
-                            )
-                         
+                        if currentIndex == 7 {
+                            Text("+")
+                                .font(.custom("MadimiOne-Regular", size: 28))
+                                .foregroundColor(.white)
+                                .bold()
+                                .multilineTextAlignment(.center)
+                                .hidden()
+                            
+                            Image(imageProgressArray[currentIndex])
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 124, height: 104)
+                        } else {
+                            Text("+")
+                                .font(.custom("MadimiOne-Regular", size: 28))
+                                .foregroundColor(.white)
+                                .bold()
+                                .multilineTextAlignment(.center)
+                            
+                            Image(imageProgressArray[currentIndex])
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 154, height: 154)
+                                .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray, lineWidth: 2)
+                                )
+                        }
                     }
+                    
                     Text("CONGRATULATIONS, YOU GOT \(itemProgressArray[currentIndex])")
                         .font(.custom("MadimiOne-Regular", size: 18))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .frame(width: 190)
-                        
+                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .padding(EdgeInsets(top: 145, leading: 130, bottom: 0, trailing: 0))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
-        
+            
             Button(action: {
                 isStageActive = true
                 if UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) < 7 {
@@ -174,7 +189,7 @@ struct VictoryView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 250, leading: 0, bottom: 0, trailing: 0))
             
-     
+            
             
             Image("menuWoman")
                 .resizable()

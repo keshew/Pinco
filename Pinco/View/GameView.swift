@@ -4,6 +4,8 @@ struct Cell {
     var string: String?
     var image: String?
     var positon: CGPoint?
+    var webImage: String?
+    var isWeb: Bool?
 }
 
 struct GameView: View {
@@ -43,9 +45,9 @@ struct GameView: View {
 //                                                "whiteCupWithSpoonImage": "whiteCupWithSpoonImage",
 //                                                "yellowCooklngCupImage": "yellowCooklngCupImage",
                                                 
-                                                "bombTool": "bombTool",
-                                                "greandeTool": "greandeTool",
-                                                "rocketTool": "rocketTool",
+//                                                "bombTool": "bombTool",
+//                                                "greandeTool": "greandeTool",
+//                                                "rocketTool": "rocketTool",
                                                 
     ]
     
@@ -54,11 +56,15 @@ struct GameView: View {
 //                                    "potWaterImage",
 //                                    "cheeseImage"]
     
-   @State private var goalImageDictionary: [String: Int] = ["bowlWoodImage": 3,
-                                                      "plateWithSpoonImage": 3,
-                                                      "potWaterImage": 3,
-                                                      "cheeseImage": 3]
-    private let goalCountArray = [3,3,3,3]
+   @State private var goalImageDictionary: [String: Int] = ["bowlWoodImage": (UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) + 1) * 3,
+                                                      "plateWithSpoonImage": (UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) + 1) * 3,
+                                                      "potWaterImage": (UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) + 1) * 3,
+                                                      "cheeseImage": (UserDefaultsManager.defaults.integer(forKey: Keys.indexForStage.rawValue) + 1) * 3]
+//
+    func checkForWeb() {
+        
+    }
+    
     private func swapCellsToBottom(row1: Int, col1: Int) {
         let row2 = (row1 + 1) % board.count
         let temp = board[row1][col1]
@@ -96,99 +102,166 @@ struct GameView: View {
         UserDefaultsManager().minus(lifes: 1)
     }
     
-    func useAchieve(row: Int, col: Int) {
-        
-        if board[row][col].string == "rocketTool" {
-            let nameOfImageGoal = Array(goalImageDictionary.keys)
+//    func test(row: Int, col: Int) {
+//        if board[row][col].string == "rocketTool" {
+//            var executed = false
+//            let nameOfImageGoal = Array(goalImageDictionary.keys)
+//            var matches: [(Int, Int)] = []
+//            matches.append((row - 1, col - 1))
+//            matches.append((row - 1, col  + 1))
+//            matches.append((row - 1, col))
+//            matches.append((row, col - 1))
+//            matches.append((row, col))
+//            matches.append((row, col + 1))
+//            matches.append((row + 1, col))
+//            matches.append((row + 1, col + 1))
+//            matches.append((row + 1, col - 1))
+//            
+//            for index in matches {
+//                for item in nameOfImageGoal {
+//                    if index > (0,0), index <= (8,9) {
+//                        self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                            withAnimation {
+//                                let randomKey = itemsArray.keys.randomElement()
+//                                self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+//    func useAchieve(row: Int, col: Int) {
+//        if board[row][col].string == "rocketTool" {
+//            var executed = false
+//            let nameOfImageGoal = Array(goalImageDictionary.keys)
+//            var matches: [(Int, Int)] = []
+//            matches.append((row + 1, col))
+//            matches.append((row, col))
+//            matches.append((row - 1, col))
+//            
+//            let value = board[row][col].string
+//            let value2 = board[row + 1][col].string
+//            let value3 = board[row - 1][col].string
+//            
+//            let array = [value,value2,value3]
+//            
+//            for index in matches {
+//                for item in nameOfImageGoal {
+//                    for valuew in array {
+//                        if valuew == item {
+//                            if !executed {
+//                                if goalImageDictionary[value ?? ""] ?? 0 > 0 || goalImageDictionary[value2 ?? ""] ?? 0 > 0 {
+//                                    goalImageDictionary[valuew ?? ""] = (goalImageDictionary[valuew ?? ""] ?? 0) - 1
+//                                    executed = true
+//                                }
+//                            }
+//                        }
+//                    }
+//                    
+//                    if index > (0,0), index <= (8,9) {
+//                        self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                            withAnimation {
+//                                let randomKey = itemsArray.keys.randomElement()
+//                                self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } else if board[row][col].string == "greandeTool" {
+//            let nameOfImageGoal = Array(goalImageDictionary.keys)
+//            var matches: [(Int, Int)] = []
+//            matches.append((row - 1, col - 1))
+//            matches.append((row - 1, col  + 1))
+//            matches.append((row - 1, col))
+//            matches.append((row, col - 1))
+//            matches.append((row, col))
+//            matches.append((row, col + 1))
+//            matches.append((row + 1, col))
+//            matches.append((row + 1, col + 1))
+//            matches.append((row + 1, col - 1))
+//
+//            let value = board[row][col].string
+//            
+//            for index in matches {
+//                for item in nameOfImageGoal {
+//                    if value == item {
+//                        if goalImageDictionary[value ?? ""] ?? 0 > 0 {
+//                            goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
+//                        }
+//                    }
+//                }
+//                if index > (0,0), index <= (8,8), index.1 >= 0, index.1 <= 6 {
+//                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                        withAnimation {
+//                            let randomKey = itemsArray.keys.randomElement()
+//                            self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
+//                        }
+//                    }
+//                }
+//            }
+//        } else if board[row][col].string == "bombTool" {
+//            let nameOfImageGoal = Array(goalImageDictionary.keys)
+//            var matches: [(Int, Int)] = []
+//            matches.append((row - 1, col))
+//            matches.append((row, col - 1))
+//            matches.append((row, col))
+//            matches.append((row, col + 1))
+//            matches.append((row + 1, col))
+//            
+//            let value = board[row][col].string
+//            for index in matches {
+//                for item in nameOfImageGoal {
+//                    if value == item {
+//                        if goalImageDictionary[value ?? ""] ?? 0 > 0 {
+//                            goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
+//                        }
+//                    }
+//                }
+//                
+//                if index > (0,0), index <= (8,8), index.1 >= 0, index.1 <= 6 {
+//                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                        withAnimation {
+//                            let randomKey = itemsArray.keys.randomElement()
+//                            self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    func useHummerTool(row: Int, col: Int) {
+        let nameOfImageGoal = Array(goalImageDictionary.keys)
+        if isHummerPicked {
             var matches: [(Int, Int)] = []
-            matches.append((row + 1, col))
             matches.append((row, col))
-            matches.append((row - 1, col))
-            
             let value = board[row][col].string
-            
-            for index in matches {
-                for item in nameOfImageGoal {
-                    if value == item || board[row + 1][col].string == item || board[row - 1][col].string == item {
-                        if goalImageDictionary[value ?? ""] ?? 0 > 0 {
-                            goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
-                        }
-                    }
-                }
-                
-                if index > (0,0), index <= (8,9) {
-                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        withAnimation {
-                            let randomKey = itemsArray.keys.randomElement()
-                            self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
-                        }
-                    }
-                }
-            }
-        } else if board[row][col].string == "greandeTool" {
-            let nameOfImageGoal = Array(goalImageDictionary.keys)
-            var matches: [(Int, Int)] = []
-            matches.append((row - 1, col - 1))
-            matches.append((row - 1, col  + 1))
-            matches.append((row - 1, col))
-            matches.append((row, col - 1))
-            matches.append((row, col))
-            matches.append((row, col + 1))
-            matches.append((row + 1, col))
-            matches.append((row + 1, col + 1))
-            matches.append((row + 1, col - 1))
-
-            let value = board[row][col].string
-            
             for index in matches {
                 for item in nameOfImageGoal {
                     if value == item {
                         if goalImageDictionary[value ?? ""] ?? 0 > 0 {
                             goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
+                            UserDefaultsManager().minus(money: 150)
                         }
                     }
                 }
-                if index > (0,0), index <= (8,8), index.1 >= 0, index.1 <= 6 {
-                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        withAnimation {
-                            let randomKey = itemsArray.keys.randomElement()
-                            self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
-                        }
-                    }
-                }
-            }
-        } else if board[row][col].string == "bombTool" {
-            let nameOfImageGoal = Array(goalImageDictionary.keys)
-            var matches: [(Int, Int)] = []
-            matches.append((row - 1, col))
-            matches.append((row, col - 1))
-            matches.append((row, col))
-            matches.append((row, col + 1))
-            matches.append((row + 1, col))
-            
-            let value = board[row][col].string
-            for index in matches {
-                for item in nameOfImageGoal {
-                    if value == item {
-                        if goalImageDictionary[value ?? ""] ?? 0 > 0 {
-                            goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
-                        }
-                    }
-                }
-                
-                if index > (0,0), index <= (8,8), index.1 >= 0, index.1 <= 6 {
-                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        withAnimation {
-                            let randomKey = itemsArray.keys.randomElement()
-                            self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
-                        }
+                withAnimation(.easeInOut(duration: 1)) {
+                    self.board[index.0][index.1] = Cell(string: "toolEffect", image: "toolEffect", webImage: "toolEffect")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        let randomKey = itemsArray.keys.randomElement()
+                        self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
                     }
                 }
             }
         }
+        isHummerPicked = false
     }
     
     func useShowelTool(row: Int, col: Int) {
@@ -202,6 +275,7 @@ struct GameView: View {
                     if value == item {
                         if goalImageDictionary[value ?? ""] ?? 0 > 0 {
                             goalImageDictionary[value ?? ""] = (goalImageDictionary[value ?? ""] ?? 0) - 1
+                            UserDefaultsManager().minus(money: 50)
                         }
                     }
                 }
@@ -215,7 +289,6 @@ struct GameView: View {
             }
         }
         isShowelPicked = false
-        UserDefaultsManager().minus(money: 50)
     }
     
     func openToolsLevels() {
@@ -238,7 +311,11 @@ struct GameView: View {
         for row in 0..<board.count {
             for col in 0..<board[row].count {
                 let randomKey = itemsArray.keys.randomElement()
-                board[row][col] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!], positon: CGPoint(x: row, y: col))
+                if row > 4, col > 2 {
+                    board[row][col] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!], positon: CGPoint(x: row, y: col), webImage: "web", isWeb: true)
+                } else {
+                    board[row][col] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!], positon: CGPoint(x: row, y: col), webImage: nil, isWeb: false)
+                }
             }
         }
     }
@@ -250,16 +327,22 @@ struct GameView: View {
         var matches: [(Int, Int)] = []
         for row in 0..<board.count {
             for col in 0..<board[row].count - 2 {
-                if let value = board[row][col].string,
-                   value == board[row][col + 1].string,
-                   value == board[row][col + 2].string {
-                    matches.append((row, col))
-                    matches.append((row, col + 1))
-                    matches.append((row, col + 2))
-                   
-                    for item in nameOfImageGoal {
-                        if value == item {
-                            goalImageDictionary[value] = 0
+                if row > 4, col > 2 {
+                
+                } else {
+                    if let value = board[row][col].string,
+                       value == board[row][col + 1].string,
+                       value == board[row][col + 2].string  {
+                        matches.append((row, col))
+                        matches.append((row, col + 1))
+                        matches.append((row, col + 2))
+                        
+                        for item in nameOfImageGoal {
+                            if value == item {
+                                if  goalImageDictionary[value] ?? 0 > 0 {
+                                    goalImageDictionary[value] = (goalImageDictionary[value] ?? 0) - 3
+                                }
+                            }
                         }
                     }
                 }
@@ -268,15 +351,20 @@ struct GameView: View {
     
         for col in 0..<board[0].count {
             for row in 0..<board.count - 2 {
-                if let value = board[row][col].string,
-                   value == board[row + 1][col].string,
-                   value == board[row + 2][col].string {
-                    matches.append((row, col))
-                    matches.append((row + 1, col))
-                    matches.append((row + 2, col))
-                    for item in nameOfImageGoal {
-                        if value == item {
-                            goalImageDictionary[value] = 0
+                if row > 4, col > 2 {
+                } else {
+                    if let value = board[row][col].string,
+                       value == board[row + 1][col].string,
+                       value == board[row + 2][col].string {
+                        matches.append((row, col))
+                        matches.append((row + 1, col))
+                        matches.append((row + 2, col))
+                        for item in nameOfImageGoal {
+                            if value == item {
+                                if  goalImageDictionary[value] ?? 0 > 0 {
+                                    goalImageDictionary[value] = (goalImageDictionary[value] ?? 0) - 3
+                                }
+                            }
                         }
                     }
                 }
@@ -285,9 +373,10 @@ struct GameView: View {
         
         for index in matches {
             withAnimation(.easeInOut(duration: 1)) {
-                self.board[index.0][index.1] = Cell(string: nil, image: nil)
+//                ДОБАВИТЬ СВОЙСТВО В МОДЕЛЬ КАК ПАУТИНУ И ПЕРЕДАВАТЬ ЕЕ В НОЛЬ ПОСЛЕ СОВПАДНЕНИЯ
+                self.board[index.0][index.1] = Cell(string: nil, image: nil, webImage: nil)
                 let randomKey = itemsArray.keys.randomElement()
-                self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!])
+                self.board[index.0][index.1] = Cell(string: itemsArray[randomKey!], image: itemsArray[randomKey!], webImage: "clearImage", isWeb: false)
             }
         }
         
@@ -387,6 +476,8 @@ struct GameView: View {
                             ZStack {
                                 let nameOfImageGoal = Array(goalImageDictionary.keys)
                                 let countOfImageGoal = Array(goalImageDictionary.values)
+//                                goalImageDictionary.values[index] = countOfImageGoal[index] * (currentIndex + 1)
+                              
                                 Image(nameOfImageGoal[index])
                                     .resizable()
                                     .scaledToFit()
@@ -417,23 +508,35 @@ struct GameView: View {
                     ForEach(0..<board.count, id: \.self) { row in
                         HStack {
                             ForEach(0..<board[row].count, id: \.self) { col in
-                                Image ("\(board[row][col].image ?? "ovenImage" )")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 35, height: 40)
-                                    .padding(2)
-                                    .offset(x: self.offset.width, y: self.offset.height)
-                                    .padding(.vertical, -2)
-                                    .background(Color(#colorLiteral(red: 227/255, green: 171/255, blue: 172/255, alpha: 1)))
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color(#colorLiteral(red: 182/255, green: 77/255, blue: 77/255, alpha: 1)), lineWidth: 3)
-                                    )
-                                    .cornerRadius(10)
+                                if col > 2, row > 4 {
+                                    ZStack {
+                                    Image ("\(board[row][col].image ?? "clearImage" )")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35, height: 40)
+                                        .padding(2)
+                                        .offset(x: self.offset.width, y: self.offset.height)
+                                        .padding(.vertical, -2)
+                                        .background(Color(#colorLiteral(red: 227/255, green: 171/255, blue: 172/255, alpha: 1)))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color(#colorLiteral(red: 182/255, green: 77/255, blue: 77/255, alpha: 1)), lineWidth: 3)
+                                        )
+                                        .cornerRadius(10)
+                                        
+                                        Image ("\(board[row][col].webImage ?? "clearImage" )")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 32, height: 37)
+                                            .padding(2)
+                                            .offset(x: self.offset.width, y: self.offset.height)
+                                            .padding(.vertical, -2)
+                                            .foregroundColor(.red)
+                                }
                                     .onTapGesture {
                                         withAnimation {
-                                            useShowelTool(row: row, col: col)
-                                            useAchieve(row: row, col: col)
+                                            useHummerTool(row: row, col: col)
+                                          
                                         }
                                     }
                                     .gesture(
@@ -478,6 +581,74 @@ struct GameView: View {
                                                     }
                                                 }
                                         })
+                                } else {
+                                    ZStack {
+                                    Image ("\(board[row][col].image ?? "clearImage" )")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 35, height: 40)
+                                        .padding(2)
+                                        .offset(x: self.offset.width, y: self.offset.height)
+                                        .padding(.vertical, -2)
+                                        .background(Color(#colorLiteral(red: 227/255, green: 171/255, blue: 172/255, alpha: 1)))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color(#colorLiteral(red: 182/255, green: 77/255, blue: 77/255, alpha: 1)), lineWidth: 3)
+                                        )
+                                        .cornerRadius(10)
+                                }
+                                    .onTapGesture {
+                                        withAnimation {
+                                            useHummerTool(row: row, col: col)
+                                            useShowelTool(row: row, col: col)
+                                        }
+                                    }
+                                    .gesture(
+                                        withAnimation {
+                                            DragGesture()
+    //                                            .onChanged { value in
+    //
+    //                                            }
+                                                .onEnded { value in
+                                                    if abs(value.translation.width) > abs(value.translation.height) {
+                                                        if value.translation.width < 0 {
+                                                            swapCellsToLeft(row1: row, col1: col)
+                                                            if checkForMatches(board: board) {
+                                                                swapCellsToLeft(row1: row, col1: col)
+                                                            } else {
+                                                                previousPosition(row: row, col: col)
+                                                            }
+                                                        } else {
+                                                            swapCellsToRight(row1: row, col1: col)
+                                                            if checkForMatches(board: board) {
+                                                                swapCellsToRight(row1: row, col1: col)
+                                                            } else {
+                                                                previousPosition(row: row, col: col)
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if value.translation.height < 0 {
+                                                            swapCellsToTop(row1: row, col1: col)
+                                                            if checkForMatches(board: board) {
+                                                                swapCellsToTop(row1: row, col1: col)
+                                                            } else {
+                                                                previousPosition(row: row, col: col)
+                                                            }
+                                                        } else {
+                                                            swapCellsToBottom(row1: row, col1: col)
+                                                            if checkForMatches(board: board) {
+                                                                swapCellsToBottom(row1: row, col1: col)
+                                                            } else {
+                                                                previousPosition(row: row, col: col)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                        })
+                                }
+                                
+                             
+                              
                             }
                         }
                         .padding(.vertical, -3)
@@ -523,12 +694,14 @@ struct GameView: View {
 //                    }
                     
                     Button(action: {
-                        if !isHummerPicked && UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int > 50 {
+                        //                        HERE  && UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int > 50
+                        if !isHummerPicked {
                             isShowelPicked = !isShowelPicked
                         }
                     }) {
                         ZStack {
-                            if currentIndex >= 2 {
+//                        HERE
+                            if currentIndex >= 0 {
                                 Image("backgroundSettingsButton")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -602,12 +775,13 @@ struct GameView: View {
 //                    }
                     
                     Button(action: {
-                        if !isShowelPicked && UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int > 100 {
+                        if !isShowelPicked {
                             isHummerPicked = !isHummerPicked
                         }
                     }) {
                         ZStack {
-                            if currentIndex >= 4 {
+                            //here  && UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) as! Int > 100
+                            if currentIndex >= 0 {
                                 Image("backgroundSettingsButton")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)

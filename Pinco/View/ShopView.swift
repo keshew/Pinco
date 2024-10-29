@@ -105,65 +105,65 @@ struct ShopView: View {
                     LazyVGrid(columns: columns, spacing: 35) {
                         ForEach(Array(items.enumerated()), id: \.1) { index, item in
                             if index == 2 {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
-                                        .frame(width: 155, height: 244)
-                                        .cornerRadius(20)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.gray, lineWidth: 2)
-                                        )
-                                    
-                                    Text(labelArray[index])
-                                        .frame(minWidth: 150, minHeight: 190)
-                                        .cornerRadius(8)
-                                        .font(.custom("MadimiOne-Regular", size: 34))
-                                        .foregroundColor(.white)
-                                        .offset(x: 0, y: -70)
-                                        .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
-                                    
-                                    ZStack {
-                                        Image("bombTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: -30, y: 45)
-
-                                        Image("greandeTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 35, y: 45)
-                                        
-                                        Image("rocketTool")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
-                                            .offset(x: 0, y: 50)
-                                    }
-                                    .offset(y: -40)
-                                    ZStack {
-                                        Button(action: {
-                                            isToolShopAvailable = true
-                                        }) {
-                                            ZStack {
-                                                Image("lightButton")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 140, height: 90)
-                                                    .cornerRadius(15)
-                                                
-                                                Text("CHECK")
-                                                    .font(.custom("MadimiOne-Regular", size: 20))
-                                                    .foregroundColor(.yellow)
-                                            }
-                                            .frame(width: 110, height: 50)
-                                        }
-                                        .offset(y: 110)
-                                    }
-                                }
-                                .offset(x: UIScreen.main.bounds.width / 4.5)
+//                                ZStack {
+//                                    Rectangle()
+//                                        .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
+//                                        .frame(width: 155, height: 244)
+//                                        .cornerRadius(20)
+//                                        .overlay(
+//                                            RoundedRectangle(cornerRadius: 20)
+//                                                .stroke(Color.gray, lineWidth: 2)
+//                                        )
+//                                    
+//                                    Text(labelArray[index])
+//                                        .frame(minWidth: 150, minHeight: 190)
+//                                        .cornerRadius(8)
+//                                        .font(.custom("MadimiOne-Regular", size: 34))
+//                                        .foregroundColor(.white)
+//                                        .offset(x: 0, y: -70)
+//                                        .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
+//                                    
+//                                    ZStack {
+//                                        Image("bombTool")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
+//                                            .offset(x: -30, y: 45)
+//
+//                                        Image("greandeTool")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
+//                                            .offset(x: 35, y: 45)
+//                                        
+//                                        Image("rocketTool")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: sizeForImages[index], height: sizeForImages[index])
+//                                            .offset(x: 0, y: 50)
+//                                    }
+//                                    .offset(y: -40)
+//                                    ZStack {
+//                                        Button(action: {
+//                                            isToolShopAvailable = true
+//                                        }) {
+//                                            ZStack {
+//                                                Image("lightButton")
+//                                                    .resizable()
+//                                                    .scaledToFit()
+//                                                    .frame(width: 140, height: 90)
+//                                                    .cornerRadius(15)
+//                                                
+//                                                Text("CHECK")
+//                                                    .font(.custom("MadimiOne-Regular", size: 20))
+//                                                    .foregroundColor(.yellow)
+//                                            }
+//                                            .frame(width: 110, height: 50)
+//                                        }
+//                                        .offset(y: 110)
+//                                    }
+//                                }
+//                                .offset(x: UIScreen.main.bounds.width / 4.5)
                             } else {
                                 ZStack {
                                     Rectangle()

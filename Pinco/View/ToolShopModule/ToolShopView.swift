@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ToolShopView: View {
     @Environment(\.presentationMode) var presentationMode
+    private var toolShopViewModel = ToolShopViewModel()
     @State private var currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
     @State private var currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
     let columns: [GridItem] = [GridItem(.adaptive(minimum: 250))]
@@ -95,7 +96,7 @@ struct ToolShopView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 35) {
-                        ForEach(Array(items.enumerated()), id: \.1) { index, item in
+                        ForEach(Array(toolShopViewModel.contact.items.enumerated()), id: \.1) { index, item in
                                 ZStack {
                                     Rectangle()
                                         .fill(Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)))
@@ -109,7 +110,7 @@ struct ToolShopView: View {
                                     VStack {
                                         HStack(spacing: 40) {
                                             ZStack {
-                                                Image("moneyBackground")
+                                                Image(ToolShopModel.Const.moneyBackground.rawValue)
                                                     .resizable()
                                                     .scaledToFit()
                                                     .frame(width: 58, height: 27)
@@ -121,7 +122,7 @@ struct ToolShopView: View {
                                                     .foregroundColor(.yellow)
                                                     .offset(x: 3)
                                                 
-                                                Image("moneyCount")
+                                                Image(ToolShopModel.Const.moneyCount.rawValue)
                                                     .resizable()
                                                     .scaledToFit()
                                                     .frame(width: 31, height: 31)
@@ -172,9 +173,6 @@ struct ToolShopView: View {
                                     
                                     ZStack {
                                         Button(action: {
-//                                            UserDefaultsManager().buyLifes(lifes: amountLifes[index], cost: priceForLifes[index])
-//                                            currentMoney = UserDefaultsManager.defaults.object(forKey: Keys.moneyKey.rawValue) ?? 0
-//                                            currentLife = UserDefaultsManager.defaults.object(forKey: Keys.lifesKey.rawValue) ?? 0
                                         }) {
                                             ZStack {
                                                 Image("lightButton")

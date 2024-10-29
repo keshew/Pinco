@@ -10,6 +10,14 @@
 		8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */; };
 		864DBF7A2CCC419000456390 /* CoinShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DBF792CCC419000456390 /* CoinShopView.swift */; };
 		864DBF7C2CCC4ABD00456390 /* HealthShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864DBF7B2CCC4ABD00456390 /* HealthShopView.swift */; };
+		865FCC942CCF22B70032EDEE /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC932CCF22B70032EDEE /* ProgressViewModel.swift */; };
+		865FCC962CCF230C0032EDEE /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC952CCF230C0032EDEE /* ProgressModel.swift */; };
+		865FCC992CCF28C30032EDEE /* LoseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC982CCF28C30032EDEE /* LoseModel.swift */; };
+		865FCC9B2CCF28CC0032EDEE /* LoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC9A2CCF28CC0032EDEE /* LoseViewModel.swift */; };
+		865FCC9E2CCF2B970032EDEE /* PauseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC9D2CCF2B970032EDEE /* PauseViewModel.swift */; };
+		865FCCA02CCF2BA10032EDEE /* PauseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCC9F2CCF2BA10032EDEE /* PauseModel.swift */; };
+		865FCCA32CCF2E480032EDEE /* ToolShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCCA22CCF2E480032EDEE /* ToolShopViewModel.swift */; };
+		865FCCA52CCF2E560032EDEE /* ToolShopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865FCCA42CCF2E560032EDEE /* ToolShopModel.swift */; };
 		867D461C2CB3E7650045467B /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867D461B2CB3E7650045467B /* MenuView.swift */; };
 		8682CA502CC9746C00D7599B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682CA4F2CC9746C00D7599B /* UserDefaultsManager.swift */; };
 		868F043B2CB1282400B3A759 /* PincoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F043A2CB1282400B3A759 /* PincoApp.swift */; };
@@ -37,6 +45,14 @@
 		8623BBA82CB9177500BCDF3B /* DailyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardsView.swift; sourceTree = "<group>"; };
 		864DBF792CCC419000456390 /* CoinShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopView.swift; sourceTree = "<group>"; };
 		864DBF7B2CCC4ABD00456390 /* HealthShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthShopView.swift; sourceTree = "<group>"; };
+		865FCC932CCF22B70032EDEE /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		865FCC952CCF230C0032EDEE /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
+		865FCC982CCF28C30032EDEE /* LoseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseModel.swift; sourceTree = "<group>"; };
+		865FCC9A2CCF28CC0032EDEE /* LoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewModel.swift; sourceTree = "<group>"; };
+		865FCC9D2CCF2B970032EDEE /* PauseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewModel.swift; sourceTree = "<group>"; };
+		865FCC9F2CCF2BA10032EDEE /* PauseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseModel.swift; sourceTree = "<group>"; };
+		865FCCA22CCF2E480032EDEE /* ToolShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolShopViewModel.swift; sourceTree = "<group>"; };
+		865FCCA42CCF2E560032EDEE /* ToolShopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolShopModel.swift; sourceTree = "<group>"; };
 		867D461B2CB3E7650045467B /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		8682CA4F2CC9746C00D7599B /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		868F04372CB1282400B3A759 /* Pinco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinco.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +89,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		865FCC922CCF22750032EDEE /* ProgressModule */ = {
+			isa = PBXGroup;
+			children = (
+				86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */,
+				865FCC952CCF230C0032EDEE /* ProgressModel.swift */,
+				865FCC932CCF22B70032EDEE /* ProgressViewModel.swift */,
+			);
+			path = ProgressModule;
+			sourceTree = "<group>";
+		};
+		865FCC972CCF28930032EDEE /* LoseModule */ = {
+			isa = PBXGroup;
+			children = (
+				86F4FDC42CBFC7A000406592 /* LoseView.swift */,
+				865FCC982CCF28C30032EDEE /* LoseModel.swift */,
+				865FCC9A2CCF28CC0032EDEE /* LoseViewModel.swift */,
+			);
+			path = LoseModule;
+			sourceTree = "<group>";
+		};
+		865FCC9C2CCF2B6F0032EDEE /* PauseModule */ = {
+			isa = PBXGroup;
+			children = (
+				86C0F1A32CC7D039002C9B0F /* PauseView.swift */,
+				865FCC9F2CCF2BA10032EDEE /* PauseModel.swift */,
+				865FCC9D2CCF2B970032EDEE /* PauseViewModel.swift */,
+			);
+			path = PauseModule;
+			sourceTree = "<group>";
+		};
+		865FCCA12CCF2E340032EDEE /* ToolShopModule */ = {
+			isa = PBXGroup;
+			children = (
+				86B2AD132CCCD08100F786B9 /* ToolShopView.swift */,
+				865FCCA42CCF2E560032EDEE /* ToolShopModel.swift */,
+				865FCCA22CCF2E480032EDEE /* ToolShopViewModel.swift */,
+			);
+			path = ToolShopModule;
+			sourceTree = "<group>";
+		};
 		867D461A2CB3E75B0045467B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,10 +142,10 @@
 				86A715172CC8EEA500CA70DC /* VictoryView.swift */,
 				864DBF792CCC419000456390 /* CoinShopView.swift */,
 				864DBF7B2CCC4ABD00456390 /* HealthShopView.swift */,
-				86B2AD132CCCD08100F786B9 /* ToolShopView.swift */,
-				86C0F1A32CC7D039002C9B0F /* PauseView.swift */,
-				86F4FDC42CBFC7A000406592 /* LoseView.swift */,
-				86CA54F22CB7D51500ACAEE3 /* ProgressView.swift */,
+				865FCCA12CCF2E340032EDEE /* ToolShopModule */,
+				865FCC9C2CCF2B6F0032EDEE /* PauseModule */,
+				865FCC972CCF28930032EDEE /* LoseModule */,
+				865FCC922CCF22750032EDEE /* ProgressModule */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,14 +277,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				865FCC992CCF28C30032EDEE /* LoseModel.swift in Sources */,
+				865FCC962CCF230C0032EDEE /* ProgressModel.swift in Sources */,
+				865FCC942CCF22B70032EDEE /* ProgressViewModel.swift in Sources */,
 				86B2AD142CCCD08100F786B9 /* ToolShopView.swift in Sources */,
+				865FCCA02CCF2BA10032EDEE /* PauseModel.swift in Sources */,
 				86D622762CB5333C00A149C6 /* StageView.swift in Sources */,
+				865FCCA32CCF2E480032EDEE /* ToolShopViewModel.swift in Sources */,
 				868F04492CB130D400B3A759 /* FirstLaunchView.swift in Sources */,
 				8623BBA92CB9177500BCDF3B /* DailyRewardsView.swift in Sources */,
 				8682CA502CC9746C00D7599B /* UserDefaultsManager.swift in Sources */,
 				86A715182CC8EEA500CA70DC /* VictoryView.swift in Sources */,
+				865FCC9B2CCF28CC0032EDEE /* LoseViewModel.swift in Sources */,
 				86F4FDC52CBFC7A000406592 /* LoseView.swift in Sources */,
+				865FCC9E2CCF2B970032EDEE /* PauseViewModel.swift in Sources */,
 				867D461C2CB3E7650045467B /* MenuView.swift in Sources */,
+				865FCCA52CCF2E560032EDEE /* ToolShopModel.swift in Sources */,
 				864DBF7A2CCC419000456390 /* CoinShopView.swift in Sources */,
 				86B46FAE2CBABFA7009605DE /* GameView.swift in Sources */,
 				868F043D2CB1282400B3A759 /* ContentView.swift in Sources */,

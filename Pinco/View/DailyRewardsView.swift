@@ -40,19 +40,6 @@ struct DailyRewardsView: View {
                                      .pink,
                                      .yellow]
     
-//    func currentAvailbleGifts() {
-//        if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
-//            let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0
-//            print("Количество дней с первого запуска: \(daysPassed)")
-//            if daysPassed < 7 {
-//                let range = daysPassed...daysPassed
-//                var array = returnArray()
-//                array[range] = ["CLAIM"]
-//                UserDefaultsManager().add(isReadyToGet: array)
-//            }
-//        }
-//    }
-    
     func gotGift() {
         if let firstLaunchDate =  UserDefaultsManager.defaults.object(forKey: Keys.recordDataSinceFirstLaunchKey.rawValue) as? Date {
             let daysPassed = Calendar.current.dateComponents([.day], from: firstLaunchDate, to: Date()).day ?? 0

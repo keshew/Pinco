@@ -8,38 +8,8 @@ struct ProgressView: View {
     @State private var opacityBackdButton = 0.5
     @State private var isForwardButtonDisable = false
     @State private var isBackButtonDisable = true
+    private var progressViewModel = ProgressViewModel()
     
-    private var descriptionText = "IN THIS STAGE YOU NEED TO COLLECT ALL THE ELEMENTS OF THE KITCHEN TO AND COLLECT"
-    
-    var procentProgressArray = ["0%",
-                                "15%",
-                                "30%",
-                                "45%",
-                                "60%",
-                                "75%",
-                                "90%",
-                                "100%"]
-    var levelProgressArray =   ["LEVEL 1",
-                                "LEVEL 2",
-                                "LEVEL 3",
-                                "LEVEL 4",
-                                "LEVEL 5",
-                                "LEVEL 6",
-                                "LEVEL 7"]
-    var itemProgressArray =     ["MICROWAVE",
-                                 "TOUCHBOX",
-                                 "SPIRITUAL",
-                                 "SINK",
-                                 "CUPBOARD",
-                                 "FRIDGE",
-                                 "GAS STOVE"]
-    var imageProgressArray =    ["microvawe",
-                                 "touchbox",
-                                 "spiritual",
-                                 "sink",
-                                 "cupboard",
-                                 "fridge",
-                                 "gasStove"]
     func disableButton() {
         if currentIndex == 7 {
             isForwardButtonDisable = true
@@ -57,7 +27,7 @@ struct ProgressView: View {
     
     var body: some View {
         ZStack {
-            Image("progressViewBackground")
+            Image(ProgressModel.ImageName.progressViewBackground.rawValue)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -67,13 +37,13 @@ struct ProgressView: View {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     ZStack {
-                        Image("backgroundSettingsButton")
+                        Image(ProgressModel.ImageName.backgroundSettingsButton.rawValue)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 55, height: 55)
                             .cornerRadius(15)
                         
-                        Image("backButton")
+                        Image(ProgressModel.ImageName.backButton.rawValue)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24.4, height: 24.4)
@@ -84,7 +54,7 @@ struct ProgressView: View {
                     
                 }) {
                     ZStack {
-                        Image("backgroundSettingsButton")
+                        Image(ProgressModel.ImageName.backgroundSettingsButton.rawValue)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 55, height: 55)
@@ -113,7 +83,7 @@ struct ProgressView: View {
                             .stroke(Color.gray, lineWidth: 2)
                     )
                 
-                Text(procentProgressArray[currentIndex])
+                Text(progressViewModel.contact.procentProgressArray[currentIndex])
                     .frame(width: 100, height: 58)
                     .font(.custom("MadimiOne-Regular", size: 30))
                     .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
@@ -127,18 +97,18 @@ struct ProgressView: View {
                 
                 if currentIndex > 0 {
                     VStack {
-                        Text(levelProgressArray[itemIndex])
+                        Text(progressViewModel.contact.levelProgressArray[itemIndex])
                             .font(.custom("MadimiOne-Regular", size: 30))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                         
-                        Image(imageProgressArray[itemIndex])
+                        Image(progressViewModel.contact.imageProgressArray[itemIndex])
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 170)
                             .offset(CGSize(width: 0, height: -10))
                         
-                        Text(itemProgressArray[itemIndex])
+                        Text(progressViewModel.contact.itemProgressArray[itemIndex])
                             .frame(width: 250, height: 50)
                             .font(.custom("MadimiOne-Regular", size: 28))
                             .foregroundColor(.white)
@@ -153,7 +123,7 @@ struct ProgressView: View {
                             .stroke(Color.gray, lineWidth: 2)
                     )
                 } else {
-                    Text(descriptionText)
+                    Text(progressViewModel.contact.descriptionText)
                         .padding(20)
                         .frame(width: 308, height: 356)
                         .font(.custom("MadimiOne-Regular", size: 30))
@@ -175,7 +145,7 @@ struct ProgressView: View {
                             disableButton()
                         }
                     }) {
-                        Image("backArrowProgressButton")
+                        Image(ProgressModel.ImageName.backArrowProgressButton.rawValue)
                             .frame(width: 72, height: 72)
                             .padding(2)
                             .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
@@ -195,7 +165,7 @@ struct ProgressView: View {
                             disableButton()
                         }
                     }) {
-                        Image("forwardArrowProgressButton")
+                        Image(ProgressModel.ImageName.forwardArrowProgressButton.rawValue)
                             .frame(width: 72, height: 72)
                             .padding(2)
                             .background((Color(#colorLiteral(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))))
